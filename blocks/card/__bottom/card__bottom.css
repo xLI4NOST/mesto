@@ -1,0 +1,6 @@
+.card__bottom {
+    margin: 25px auto;
+    max-width: 246px;
+    display: flex;
+    justify-content: space-between;
+}

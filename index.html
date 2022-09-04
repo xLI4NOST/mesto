@@ -5,32 +5,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./pages/index.css">
     <title>Место</title>
 </head>
 
 <body class="page">
     <section class="overlay">
-    <article class="menu">
-        <img src="./images/vector/Close Icon.svg" alt="крестик" class="close-icon">
-        <h2 class="menu__title">Редактировать профиль</h2> 
-        <div class="profile__options">
-            <input type="text" placeholder="Жак-Ив Кусто" class="menu__name">
-            <input type="text" placeholder="Исследователь океана" class="menu__subtitle">
-            <button class="menu__button"><p>Сохранить</p></button>
-        </div>
-    </article>
-</section>
+        <article class="menu">
+            <img src="./images/vector/Close Icon.svg" alt="крестик" class="close-icon">
+            <h2 class="menu__title">Редактировать профиль</h2>
+            <div class="menu__options">
+                <input type="text" placeholder="Жак-Ив Кусто" class="menu__name">
+                <input type="text" placeholder="Исследователь океана" class="menu__subtitle">
+                <button class="menu__button">
+                    <p>Сохранить</p>
+                </button>
+            </div>
+        </article>
+    </section>
     <wrapper class="wrapper">
         <header class="header">
             <img class="header__logo" src="./images/vector/header__logo.svg" alt="Лого">
         </header>
         <section class="profile">
-            <img class="avatar" src="./images/jpg/kysto.jpg" alt="Кусто">
+            <img class="profile__avatar" src="./images/jpg/kysto.jpg" alt="Кусто">
             <article class="profile-info">
                 <div class="profile-heading">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1> 
+                    <h1 class="profile__name">Жак-Ив Кусто</h1>
                     <img class="profile__edit-button" src="./images/vector/profile__Edit-Button.svg">
                 </div>
                 <p class="profile__subtitle">Исследователь океана</p>
@@ -40,52 +41,52 @@
         <section class="elements">
             <div class="card">
                 <img src="./images/jpg/kirill-pershin-1088404-unsplash.jpg" alt="Карачевск" class="card_image">
-                <div class="card-whitespace">
+                <div class="card__bottom">
                     <h2 class="card__title">Карачевск</h2>
                     <img src="./images/vector/card__like.svg" alt="" class="card__button-like">
                 </div>
             </div>
             <div class="card">
                 <img src="./images/jpg/elbrus.jpg" alt="" class="card_image">
-                <article class="card-whitespace">
+                <article class="card__bottom">
                     <h2 class="card__title">Гора Эльбрус</h2>
                     <img src="./images/vector/card__like.svg" alt="Эльбрус" class="card__button-like">
                 </article>
             </div>
             <div class="card">
                 <img src="./images/jpg/dombai.jpg" alt="" class="card_image">
-                <article class="card-whitespace">
+                <article class="card__bottom">
                     <h2 class="card__title">Домбай</h2>
                     <img src="./images/vector/card__like.svg" alt="Домбай" class="card__button-like">
                 </article>
             </div>
             <div class="card">
                 <img src="./images/jpg/elbrus.jpg" alt="" class="card_image">
-                <article class="card-whitespace">
+                <article class="card__bottom">
                     <h2 class="card__title">Гора Эльбрус</h2>
                     <img src="./images/vector/card__like.svg" alt="" class="card__button-like">
                 </article>
             </div>
             <div class="card">
                 <img src="./images/jpg/dombai.jpg" alt="" class="card_image">
-                <article class="card-whitespace">
+                <article class="card__bottom">
                     <h2 class="card__title">Домбай</h2>
                     <img src="./images/vector/card__like.svg" alt="" class="card__button-like">
                 </article>
             </div>
             <div class="card">
                 <img src="./images/jpg/kirill-pershin-1088404-unsplash.jpg" alt="" class="card_image">
-                <article class="card-whitespace">
+                <article class="card__bottom">
                     <h2 class="card__title">Карачаево-Черкессия</h2>
                     <img src="./images/vector/card__like.svg" alt="" class="card__button-like">
                 </article>
             </div>
         </section>
         <footer class="footer">
-            <h2 class="footer-copyright">© 2020 Mesto Russia</h2>
+            <h2 class="footer__copyright">© 2020 Mesto Russia</h2>
         </footer>
     </wrapper>
- <script src="./script.js"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>
