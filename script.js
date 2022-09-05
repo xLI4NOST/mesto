@@ -5,6 +5,7 @@ let menu = document.querySelector('.menu')
 let saveButton = menu.querySelector('.menu__button')
 let closeButton = menu.querySelector('.close-icon')
 let overlay = page.querySelector('.overlay')
+let like = document.querySelectorAll('.card__button-like')
 
 function addMenu() {
     menu.classList.add('menu-active');
@@ -23,6 +24,11 @@ function editProfile() {
     document.querySelector('.profile__subtitle').innerHTML = textSubtitle
 }
 
+function likeActive() {
+    like.forEach( item => { item.classList.toggle('card__button-like_active')})
+}
+
+like.forEach( item => { item.addEventListener('click', likeActive ) } )
 closeButton.addEventListener('click', closeMenu);
 editButton.addEventListener('click', addMenu);
 saveButton.addEventListener('click', closeMenu);

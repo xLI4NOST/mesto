@@ -1,6 +1,17 @@
 .close-icon {
     top: -40px;
-    left: 435px;
+    left: 99.9%;
+    /* left: 435px; */
     position: fixed;
     cursor: pointer;
+}
+
+.close-icon:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 396px) {
+    .close-icon {
+        left: 90%;
+    }
 }

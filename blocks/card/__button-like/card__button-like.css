@@ -1,0 +1,14 @@
+.card__button-like {
+    cursor: pointer;
+    
+}
+
+.card__button-like_active{
+    margin-top: 7px;
+    background-repeat: no-repeat;
+    background-image: url(/images/vector/like__active.svg);
+}
+
+.card__button-like:hover {
+    opacity: 0.6;
+}
