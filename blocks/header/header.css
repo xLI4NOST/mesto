@@ -4,3 +4,10 @@
     min-height: 56px;
     border-bottom: 1px solid #545454;
 }
+
+@media screen and (max-width: 879px) {
+    .header{
+        max-height: 54px;
+        margin: 28px 0 0;
+    }
+}

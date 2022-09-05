@@ -10,6 +10,7 @@ const textName = document.querySelector('.menu__name')
 const textSubtitle = document.querySelector('.menu__subtitle')
 const profile__name = document.querySelector ('.profile__name')
 const profile__subtitle = document.querySelector('.profile__subtitle')
+const formElement = page.querySelector ('.profile__info')
 
 function addMenu() {
     popup.classList.add('popup_active')
@@ -19,7 +20,8 @@ function closeMenu() {
     popup.classList.remove('popup_active')
 }
 
-function editProfile() {
+function editProfile(evt) {
+    evt.preventDefault();
     textName.value
     profile__name.textContent = textName.value
     textSubtitle.value
@@ -31,8 +33,10 @@ function editProfile() {
 // }
 
 // like.forEach( item => { item.addEventListener('click', likeActive ) } )
+
 closeButton.addEventListener('click', closeMenu);
 editButton.addEventListener('click', addMenu);
 saveButton.addEventListener('click', closeMenu);
 saveButton.addEventListener('click', editProfile)
+formElement.addEventListener('submit', formSubmitHandler); 
 

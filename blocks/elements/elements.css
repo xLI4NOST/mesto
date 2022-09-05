@@ -6,3 +6,9 @@
     flex-basis: 880px;
     justify-content: center;
 }
+
+@media screen and (max-width: 879px) {
+    .elements{
+        margin: 36px auto;
+    }
+}

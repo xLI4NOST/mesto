@@ -3,12 +3,12 @@
 /* fonts */
 @import url(../vendor/fonts.css);
 /* page */
-@import url(../page/page.css);
+@import url(../blocks/page/page.css);
 /* popup */
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_active/popup_active.css);
 /* wrapper */
-@import url(../wrapper/wrapper.css);
+@import url(../blocks/wrapper/wrapper.css);
 /* menu */
 @import url(../blocks/menu/menu.css);
 @import url(../blocks/menu/__title/menu__title.css);
@@ -34,7 +34,7 @@
 @import url(../blocks/card/card.css);
 @import url(../blocks/card/__button-like/card__button-like.css);
 @import url(../blocks/card/__image/card__image.css);
-@import url(../blocks/card/__bottom/card__bottom.css);
+@import url(../blocks/card/__description/card__description.css);
 @import url(../blocks/card/__title/card__title.css);
 /* footer */
 @import url(../blocks/footer/footer.css);
