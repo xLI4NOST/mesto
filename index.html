@@ -10,20 +10,19 @@
 </head>
 
 <body class="page">
-    <section class="overlay">
+    <div class="popup">
         <article class="menu">
-            <img src="./images/vector/Close_Icon.svg" alt="крестик" class="close-icon">
+            <img src="./images/vector/Close_Icon.svg" alt="крестик" class="menu__close-icon">
             <h2 class="menu__title">Редактировать профиль</h2>
             <div class="menu__options">
-                <input type="text" placeholder="Жак-Ив Кусто" class="menu__name">
-                <input type="text" placeholder="Исследователь океана" class="menu__subtitle">
-
+                <input type="text" name="menu__name" placeholder="Жак-Ив Кусто" class="menu__name">
+                <input type="text" name="menu__subtitle" placeholder="Исследователь океана" class="menu__subtitle">
             </div>
             <button class="menu__button">
                 Сохранить
             </button>
         </article>
-    </section>
+    </div>
     <div class="wrapper">
         <header class="header">
             <img class="header__logo" src="./images/vector/header__logo.svg" alt="Лого">
@@ -78,7 +77,8 @@
                 </article>
             </div>
             <div class="card">
-                <img src="./images/jpg/kirill-pershin-1088404-unsplash.jpg" alt="Карачаево-Черкессия" class="card__image">
+                <img src="./images/jpg/kirill-pershin-1088404-unsplash.jpg" alt="Карачаево-Черкессия"
+                    class="card__image">
                 <article class="card__bottom">
                     <h2 class="card__title">Карачаево-Черкессия</h2>
                     <img src="./images/vector/card__like.svg" alt="Лайк" class="card__button-like">
