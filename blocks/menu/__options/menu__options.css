@@ -1,9 +1,0 @@
-.menu__options {
-    max-width: 430px;
-}
-
-@media screen and (max-width: 879px) {
-    .menu__options{
-        max-width: 238px;
-    }
-}
