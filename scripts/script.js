@@ -1,31 +1,30 @@
-const page = document.querySelector('.page')
-const wrapper = page.querySelector('.wrapper')
-const editButton = wrapper.querySelector('.profile__edit-button')
-const menu = document.querySelector('.menu')
-const saveButton = menu.querySelector('.menu__button')
-const closeButton = menu.querySelector('.menu__close-icon')
-const popup = page.querySelector('.popup')
-const like = document.querySelectorAll('.card__button-like')
-const textName = document.querySelector('.menu__name')
-const textSubtitle = document.querySelector('.menu__subtitle')
-const profile__name = document.querySelector ('.profile__name')
-const profile__subtitle = document.querySelector('.profile__subtitle')
-const formElement = page.querySelector ('.profile__info')
+const page = document.querySelector('.page');
+const wrapper = page.querySelector('.wrapper');
+const editButton = wrapper.querySelector('.profile__edit-button');
+const menu = document.querySelector('.menu');
+const saveButton = menu.querySelector('.menu__button');
+const closeButton = menu.querySelector('.menu__close-icon');
+const popup = page.querySelector('.popup');
+const like = document.querySelectorAll('.card__button-like');
+const textName = document.querySelector('.form__input_type_name');
+const textSubtitle = document.querySelector('.form__input_type_job');
+const profileNameText = document.querySelector('.profile__name');
+const profileSubtitleText = document.querySelector('.profile__subtitle');
+const formElement = page.querySelector('.profile__info');
 
-function addMenu() {
+function openEditProfilePopup() {
     popup.classList.add('popup_active')
 }
 
-function closeMenu() {
+function closeEditProfilePopup() {
     popup.classList.remove('popup_active')
 }
 
-function editProfile(evt) {
+function formSubmitHandler(evt) {
     evt.preventDefault();
-    textName.value
-    profile__name.textContent = textName.value
-    textSubtitle.value
-    profile__subtitle.textContent = textSubtitle.value
+    profileNameText.textContent = textName.value
+    profileSubtitleText.textContent = textSubtitle.value
+    closeEditProfilePopup()
 }
 
 // function likeActive() {
@@ -34,9 +33,12 @@ function editProfile(evt) {
 
 // like.forEach( item => { item.addEventListener('click', likeActive ) } )
 
-closeButton.addEventListener('click', closeMenu);
-editButton.addEventListener('click', addMenu);
-saveButton.addEventListener('click', closeMenu);
-saveButton.addEventListener('click', editProfile)
-formElement.addEventListener('submit', formSubmitHandler); 
+
+// Жаль, что в практикуме нет кнопки лайка для ревью:) Спасибо вам большое за подробные объяснения моих ошибок, очень понятно имотивирует! Постараюсь оправдать!
+
+
+closeButton.addEventListener('click', closeEditProfilePopup);
+editButton.addEventListener('click', openEditProfilePopup);
+saveButton.addEventListener('click', formSubmitHandler);
+formElement.addEventListener('submit', formSubmitHandler);
 
