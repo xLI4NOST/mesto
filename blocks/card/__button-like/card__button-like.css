@@ -1,6 +1,6 @@
 .card__button-like {
     cursor: pointer;
-    background-image: url(../../../images/vector/card__like.svg);
+    background-image: url(../../images/vector/card__like.svg);
     background-repeat: no-repeat;
     border: none;
     background-color: white;
