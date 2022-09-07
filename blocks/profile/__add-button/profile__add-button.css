@@ -3,7 +3,7 @@
     width: 150px;
     min-height: 50px;
     max-height: 50px;
-    margin: 35px 0 0 244px;
+    margin: 35px 0 0 auto;
     border: 2px solid #FFFFFF;
     border-radius: 2px;
 }

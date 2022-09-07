@@ -10,10 +10,12 @@ const textName = document.querySelector('.form__input_type_name');
 const textSubtitle = document.querySelector('.form__input_type_job');
 const profileNameText = document.querySelector('.profile__name');
 const profileSubtitleText = document.querySelector('.profile__subtitle');
-const formElement = page.querySelector('.profile__info');
+const formElement = popup.querySelector('.form');
 
 function openEditProfilePopup() {
-    popup.classList.add('popup_active')
+    popup.classList.add('popup_active');
+    textName.value = profileNameText.textContent;
+    textSubtitle.value = profileSubtitleText.textContent;
 }
 
 function closeEditProfilePopup() {
