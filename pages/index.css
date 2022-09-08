@@ -12,12 +12,12 @@
 /* form */
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__button/form__button.css);
 /* menu */
 @import url(../blocks/menu/menu.css);
 @import url(../blocks/menu/__title/menu__title.css);
 @import url(../blocks/menu/__options/menu__options.css);
 @import url(../blocks/menu/__close-icon/menu__close-icon.css);
-@import url(../blocks/menu/__button/menu__button.css);
 /* header */
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);

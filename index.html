@@ -76,15 +76,17 @@
     </div>
     <div class="popup">
         <div class="menu">
-            <img src="./images/vector/Close_Icon.svg" alt="крестик" class="menu__close-icon">
+            <button class="menu__close-icon" type="button"><img src="./images/vector/Close_Icon.svg" alt="крестик" class="menu__close-icon"> </button>
             <h2 class="menu__title">Редактировать профиль</h2>
-            <form class="form">
-                <input type="text" name="menu__name" value="Жак-Ив Кусто" class="form__input form__input_type_name">
-                <input type="text" name="menu__subtitle" value="Исследователь океана" class="form__input form__input_type_job">
+            <form class="form" name="formMenu">
+                <input type="text" name="menuName" value="Жак-Ив Кусто" class="form__input form__input_type_name">
+                <input type="text" name="menuSubtitle" value="Исследователь океана"
+                    class="form__input form__input_type_job">
+                <button type="submit" class="menu__button">
+                    Сохранить
+                </button>
             </form>
-            <button type="submit" class="menu__button">
-                Сохранить
-            </button>
+
         </div>
     </div>
     <script src="./scripts/script.js"></script>

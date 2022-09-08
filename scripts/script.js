@@ -19,14 +19,14 @@ function openEditProfilePopup() {
 }
 
 function closeEditProfilePopup() {
-    popup.classList.remove('popup_active')
+    popup.classList.remove('popup_active');
 }
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
-    profileNameText.textContent = textName.value
-    profileSubtitleText.textContent = textSubtitle.value
-    closeEditProfilePopup()
+    profileNameText.textContent = textName.value;
+    profileSubtitleText.textContent = textSubtitle.value;
+    closeEditProfilePopup();
 }
 
 // function likeActive() {
@@ -41,6 +41,5 @@ function formSubmitHandler(evt) {
 
 closeButton.addEventListener('click', closeEditProfilePopup);
 editButton.addEventListener('click', openEditProfilePopup);
-saveButton.addEventListener('click', formSubmitHandler);
 formElement.addEventListener('submit', formSubmitHandler);
 
