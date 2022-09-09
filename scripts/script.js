@@ -36,9 +36,6 @@ function formSubmitHandler(evt) {
 // like.forEach( item => { item.addEventListener('click', likeActive ) } )
 
 
-// Жаль, что в практикуме нет кнопки лайка для ревью:) Спасибо вам большое за подробные объяснения моих ошибок, очень понятно имотивирует! Постараюсь оправдать!
-
-
 closeButton.addEventListener('click', closeEditProfilePopup);
 editButton.addEventListener('click', openEditProfilePopup);
 formElement.addEventListener('submit', formSubmitHandler);

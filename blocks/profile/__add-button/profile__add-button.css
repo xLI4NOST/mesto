@@ -6,6 +6,10 @@
     margin: 35px 0 0 auto;
     border: 2px solid #FFFFFF;
     border-radius: 2px;
+    background-image: url("../../../images/vector/plus.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 22px 22px;
 }
 
 .profile__add-button:hover{
@@ -17,5 +21,6 @@
         margin: 36px auto 0;
         width: 89.5%;
         padding: 0;
+        background-size: 16px 16px;
     }
 }
