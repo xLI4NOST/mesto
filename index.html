@@ -26,58 +26,8 @@
             <button type="button" class="profile__add-button"></button>
         </section>
         <section class="elements">
-            <template id = "card-template">
-            <div class="card">
-                <button class="card__button-delete" type="button"></button>
-                <img src="./images/jpg/kirill-pershin-1088404-unsplash.jpg" alt="Карачевск" class="card__image">
-                <div class="card__description">
-                    <h2 class="card__title">Карачевск</h2>
-                    <button class="card__button-like" type="button"></button>
-                </div>
-            </div>
 
-            <div class="card">
-                <button class="card__button-delete" type="button"></button>
-                <img src="./images/jpg/elbrus.jpg" alt="Эльбрус" class="card__image">
-                <div class="card__description">
-                    <h2 class="card__title">Гора Эльбрус</h2>
-                    <button class="card__button-like" type="button"></button>
-                </div>
-            </div>
-            <div class="card">
-                <button class="card__button-delete" type="button"></button>
-                <img src="./images/jpg/dombai.jpg" alt="Домбай" class="card__image">
-                <div class="card__description">
-                    <h2 class="card__title">Домбай</h2>
-                    <button class="card__button-like" type="button"></button>
-                </div>
-            </div>
-            <div class="card">
-                <button class="card__button-delete" type="button"></button>
-                <img src="./images/jpg/elbrus.jpg" alt="Эльбрус" class="card__image">
-                <div class="card__description">
-                    <h2 class="card__title">Гора Эльбрус</h2>
-                    <button class="card__button-like" type="button"></button>
-                </div>
-            </div>
-            <div class="card">
-                <button class="card__button-delete" type="button"></button>
-                <img src="./images/jpg/dombai.jpg" alt="Домбай" class="card__image">
-                <div class="card__description">
-                    <h2 class="card__title">Домбай</h2>
-                    <button class="card__button-like" type="button"></button>
-                </div>
-            </div>
-            <div class="card">
-                <button class="card__button-delete" type="button"></button>
-                <img src="./images/jpg/kirill-pershin-1088404-unsplash.jpg" alt="Карачаево-Черкессия"
-                    class="card__image">
-                <div class="card__description">
-                    <h2 class="card__title">Карачаево-Черкессия</h2>
-                    <button class="card__button-like" type="button"></button>
-                </div>
-            </div>
-        </template>
+
         </section>
         <footer class="footer">
             <h2 class="footer__copyright">© 2020 Mesto Russia</h2>
@@ -105,12 +55,22 @@
                 <input type="text" name="cardName" placeholder="Название" class="form__input form__input_type_text">
                 <input type="link" name="link" placeholder="Ссылка на картинку"
                     class="form__input form__input_type_link">
-                <button type="submit" class="menu__button card_create">
-                    Создать
-                </button>
+                <input type="button" class="menu__button card_create" value="Создать">
+                    
+                </input>
             </form>
         </div>
     </div>
+    <template class = "card-template">
+        <div class="card">
+            <button class="card__button-delete" type="button"></button>
+            <img src="" alt="" class="card__image">
+            <div class="card__description">
+                <h2 class="card__title"></h2>
+                <button class="card__button-like" type="button"></button>
+            </div>
+        </div>
+        </template>
     <script src="./scripts/script.js"></script>
 </body>
 
