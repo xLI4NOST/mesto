@@ -10,6 +10,13 @@
 /* popup-cards */
 @import url(../blocks/popup-cards/popup-cards.css);
 @import url(../blocks/popup-cards/_active/popup-cards_active.css);
+/* form-cards */
+@import url(../blocks/form-cards/form-cards.css);
+@import url(../blocks/form-cards/__input/form-cards__input.css);
+@import url(../blocks/form-cards/__button/form-cards__button.css);
+/* popup-image */
+@import url(../blocks/popup-image/popup-image.css);
+@import url(../blocks/popup-image/_active/popup-image_active.css);
 /* wrapper */
 @import url(../blocks/wrapper/wrapper.css);
 /* form */

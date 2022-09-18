@@ -45,7 +45,6 @@ const cardTemplate = document.querySelector('.card-template').content
 const formButton = document.querySelector('.card_create')
 function render() {
     initialCards.forEach(renderItem);
-
 }
 // функция рендеренга
 function renderItem(cardData) {
@@ -55,16 +54,19 @@ function renderItem(cardData) {
     cardImage.src = cardData.link;
     cardImage.alt = cardData.name
     cardTitle.textContent = cardData.name;
-    //Создать обработчики для всех кнопок
+    //Добавить обработччик
     setListenersForButtons(newCard);
-    container.append(newCard);
+    //Добаить карточку
+    container.prepend(newCard);
 }
-//Для кнопок
+// Создать обработчики для кнопок
 function setListenersForButtons(element) {
     const deleteCardButton = element.querySelector('.card__button-delete')
     deleteCardButton.addEventListener ('click', handleDelete)
     const cardLikeButton = element.querySelector('.card__button-like')
     cardLikeButton.addEventListener ('click', handleLike)
+    const cardAddButton = popupCards.querySelector ('.menu-cards__buttonCreate')
+cardAddButton.addEventListener ('click', handleSubmit)
 }
 //Удаление карточки
 function handleDelete (event){
@@ -78,18 +80,15 @@ function handleLike (event){
 }
 //Добавление карточки 
 
-// function handAdd () {
-//     const mesto = document.querySelector ('.form__input_type_text')
-//     const mestoLink = document.querySelector ('.form__input_type_link')
-//     const newCard = cardTemplate.cloneNode(true)
-//     const cardTitle = newCard.querySelector('.card__title')
-//     const cardImage = newCard.querySelector('.card__image')
-//     cardImage.src = mestoLink.textContent;
-//     cardImage.alt = mestoLink.textContent;
-// }
-// const cardAddButton = popupCards.querySelector ('.card_create')
-// cardAddButton.addEventListener ('click', handAdd)
+function handleSubmit (){
+    const mesto = document.querySelector ('.form-cards__input_type_text')
+    const mestoLink = document.querySelector ('.form__input_type_link')
+    renderItem(mesto.value, mestoLink.link)
+    closeEditCardsPopup()
+}
+
 render()
+//Добавление модального изображения
 
 
 
@@ -118,19 +117,23 @@ function formSubmitHandler(evt) {
     profileSubtitleText.textContent = textSubtitle.value;
     closeEditProfilePopup();
 }
-// cardCreate.addEventListener ('click', addCard)
 closeCardsButton.addEventListener('click', closeEditCardsPopup)
 closeButton.addEventListener('click', closeEditProfilePopup);
 editButton.addEventListener('click', openEditProfilePopup);
 formElement.addEventListener('submit', formSubmitHandler);
 addButton.addEventListener('click', openEditCardsPopup);
 
-// like.addEventListener ('click', function (evt){
-//     evt.target.classList.toggle ('card__button-like_active')
-// })
 
-
-
-// songElement.querySelector('.song__like').addEventListener('click', function (evt) {
-//     evt.target.classList.toggle ('song__like_active')
-
+// function handleSubmit (){
+//     //     const mesto = document.querySelector ('.form-cards__input_type_text')
+//     //     const mestoLink = document.querySelector ('.form__input_type_link')
+//     //     const newCard = cardTemplate.cloneNode(true)
+//     //     const cardTitle = newCard.querySelector('.card__title')
+//     //     const cardImage = newCard.querySelector('.card__image')
+//     //     cardImage.src = mestoLink.value;
+//     //     cardImage.alt = mesto.value
+//     //     cardTitle.textContent = mesto.value;
+//     //     closeEditCardsPopup()
+//     //     container.append(newCard);
+//     //     setListenersForButtons(newCard);
+//     // }

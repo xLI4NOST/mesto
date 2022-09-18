@@ -1,0 +1,10 @@
+.popup-image{
+    display: none;
+    width: 75vw;
+    height: 75vh;
+    position: fixed;
+    z-index: 3;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
