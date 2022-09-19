@@ -43,17 +43,18 @@ const initialCards = [
 const container = document.querySelector('.elements')
 const cardTemplate = document.querySelector('.card-template').content
 const formButton = document.querySelector('.card_create')
-function render() {
-    initialCards.forEach(renderItem);
-}
+const popupImageTemplate = document.querySelector ('.popup-image-template').content
+    // initialCards.forEach(function (value){renderItem(value.name, value.link)});
+    initialCards.forEach (value => renderItem(value.name, value.link))
+
 // функция рендеренга
-function renderItem(cardData) {
+function renderItem(text, link) {
     const newCard = cardTemplate.cloneNode(true) //Клоним кароточку
     const cardTitle = newCard.querySelector('.card__title')
     const cardImage = newCard.querySelector('.card__image')
-    cardImage.src = cardData.link;
-    cardImage.alt = cardData.name
-    cardTitle.textContent = cardData.name;
+    cardImage.src = link
+    cardImage.alt = text
+    cardTitle.textContent = text;
     //Добавить обработччик
     setListenersForButtons(newCard);
     //Добаить карточку
@@ -67,6 +68,8 @@ function setListenersForButtons(element) {
     cardLikeButton.addEventListener ('click', handleLike)
     const cardAddButton = popupCards.querySelector ('.menu-cards__buttonCreate')
 cardAddButton.addEventListener ('click', handleSubmit)
+const cardScreen = element.querySelector ('.card__image')
+cardScreen.addEventListener ('click', imagePopup)
 }
 //Удаление карточки
 function handleDelete (event){
@@ -83,14 +86,17 @@ function handleLike (event){
 function handleSubmit (){
     const mesto = document.querySelector ('.form-cards__input_type_text')
     const mestoLink = document.querySelector ('.form__input_type_link')
-    renderItem(mesto.value, mestoLink.link)
+    renderItem(mesto.value, mestoLink.value)
     closeEditCardsPopup()
 }
 
-render()
+
 //Добавление модального изображения
+function imagePopup (event) {
+const currentImage = event.target.closest ('.card__image')
+const openImage = popupImageTemplate.cloneNode(true)
 
-
+}
 
 
 function openEditProfilePopup() {
