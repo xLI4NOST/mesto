@@ -6,6 +6,7 @@
     background: transparent;
     background-image: url("../../../images/vector/Close_Icon.svg");
     align-self: flex-end;
+    margin: 8px -40px;
 }
 
 
@@ -16,10 +17,9 @@
 
 @media screen and (max-width: 396px) {
     .popup-image__close-icon {
+        margin: 0 0;
         width: 20px;
         height: 20px;
-        left: 95%;
-        top: -30px;
         background-size: 20px 20px;
     }
 }
