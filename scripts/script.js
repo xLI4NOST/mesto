@@ -72,7 +72,7 @@ function setListenersForButtons(element) {
     cardAddButton.addEventListener('click', handleSubmit)
     const cardScreen = element.querySelector('.card__image')
     cardScreen.addEventListener('click', setImageSrc)
-    const closeImagePopupButton = document.querySelector('.popup-image__popup-close-icon')
+    const closeImagePopupButton = document.querySelector('.popup-image__close-icon')
     closeImagePopupButton.addEventListener('click', closeImagePopup)
 }
 
@@ -113,7 +113,7 @@ function handleLike(event) {
 //Добавление карточки 
 function handleSubmit() {
     const mesto = document.querySelector('.form-cards__input_type_text')
-    const mestoLink = document.querySelector('.form__input_type_link')
+    const mestoLink = document.querySelector('.form-cards__input_type_link')
     renderItem(mesto.value, mestoLink.value)
     closeEditCardsPopup()
 }

@@ -54,7 +54,7 @@
             <form class="form-cards" name="formCards">
                 <input type="text" name="" placeholder="Название" class="form-cards__input form-cards__input_type_text">
                 <input type="link" name="" placeholder="Ссылка на картинку"
-                    class="form-cards__input form__input_type_link">
+                    class="form-cards__input form-cards__input_type_link">
                 <input type="button" class="menu__button menu-cards__buttonCreate" value="Создать">
                 </input>
             </form>
@@ -72,9 +72,11 @@
         </template>
 
         <div class="popup popup-image">
-            <button class="menu__close-icon popup-image__popup-close-icon" type="button"></button>
-            <img class= "popup-image__open-image" src="" alt="">
-            <h2 class="popup-image__title"></h2>
+            <div class="popup-image__container">
+                <button class="popup-image__close-icon" type="button"></button>
+                <img class= "popup-image__open-image" src="" alt="">
+                <h2 class="popup-image__title"></h2>
+        </div>
         </div>
 
     <script src="./scripts/script.js"></script>
