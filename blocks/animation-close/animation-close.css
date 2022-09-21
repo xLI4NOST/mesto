@@ -1,0 +1,12 @@
+.animation-close{
+    animation: close-opacity 0.7s ease-in;
+}
+  @keyframes close-opacity {
+    from {
+        opacity: 1;
+    }
+  
+    to {
+        opacity: 0;
+    }
+  }

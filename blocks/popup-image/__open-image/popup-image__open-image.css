@@ -1,0 +1,15 @@
+.popup-image__open-image{
+    position: absolute;
+    width: 75vw;
+    height: 75vh;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    object-fit: contain;
+}
+
+@media screen and (max-width: 880px) {
+.popup-image__open-image{
+    height: 65vh;
+}
+}
