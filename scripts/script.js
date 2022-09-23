@@ -72,11 +72,6 @@ function handleSubmit() {
     container.prepend(item);
     closeEditCardsPopup();
 }
-//Открытие popup
-// function openPopUp (event) {
-//     currentPopUp = event.target.closest ('.popup')
-// }
-
 // Создать обработчики для кнопок
 function setListenersForButtons(element) {
     const deleteCardButton = element.querySelector('.card__button-delete')
@@ -105,17 +100,6 @@ function handleOpenCardImagePreview(cardData) {
     openPopup (popupImg)
 }
 
-
-//Закрытие popup
-function slowClosePopup() {
-    popup.classList.remove('animation-open')
-
-}
-
-function closeImagePopup() {
-    popupImg.classList.remove('popup-image_active')
-}
-
 //Удаление карточки
 function handleDelete(event) {
     const currentCard = event.target.closest('.card')
@@ -129,13 +113,16 @@ function handleLike(event) {
 
 //Открытие popup
 function openPopup(popupElem) {
-    popupElem.classList.add('popup_active');
+    popupElem.classList.remove ('animation-close')
     popupElem.classList.add('animation-open');
+    popupElem.classList.add('popup_active')
+    
 }
 //Закрытие popup
 function closePopup (popupElem) {
-    popupElem.classList.remove('popup_active');
     popupElem.classList.remove('animation-open');
+    setTimeout(() => popupElem.classList.remove('popup_active'), 500);
+    popupElem.classList.add ('animation-close')
 }
 
 function handleSubmitProfileform(evt) {
@@ -160,3 +147,5 @@ formElement.addEventListener('submit', handleSubmitProfileform);
 addButton.addEventListener('click', () => {
     openPopup(popupCards);
 } );
+
+
