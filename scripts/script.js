@@ -2,7 +2,6 @@ const page = document.querySelector('.page');
 const wrapper = page.querySelector('.wrapper');
 const buttonEditProfile = wrapper.querySelector('.profile__edit-button');
 const menu = document.querySelector('.menu');
-// const saveButton = menu.querySelector('.menu__button');
 const buttonClose = menu.querySelector('.menu__close-icon');
 const popup = page.querySelector('.popup');
 const textName = document.querySelector('.form__input_type_name');
