@@ -129,7 +129,6 @@ function handleSubmitProfileform(evt) {
     evt.preventDefault();
     profileNameText.textContent = textName.value;
     profileSubtitleText.textContent = textSubtitle.value;
-    closeEditProfilePopup();
 
 }
 cardCloseButton.addEventListener('click', () => {

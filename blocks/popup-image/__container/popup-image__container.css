@@ -1,7 +1,12 @@
 .popup-image__container{
-    margin: 5% auto;
-    max-width: 75vw;
-    min-height: 75vh;
+    margin: 13% auto;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 600px) {
+    .popup-image__container{
+        margin: 35% auto;;
+    }
 }
