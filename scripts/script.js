@@ -69,7 +69,7 @@ function renderItem(text, link) {
 function handleSubmit() {
     const item = renderItem(mestoName.value, mestoLink.value);
     container.prepend(item);
-    closeEditCardsPopup();
+    closePopup(popupCards)
 }
 // Создать обработчики для кнопок
 function setListenersForButtons(element) {
