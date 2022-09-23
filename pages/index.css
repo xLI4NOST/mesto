@@ -6,7 +6,6 @@
 @import url(../blocks/page/page.css);
 /* popup */
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/_active/popup_active.css);
 /* popup-cards */
 @import url(../blocks/popup-cards/popup-cards.css);
 @import url(../blocks/popup-cards/_active/popup-cards_active.css);
@@ -22,6 +21,8 @@
 @import url(../blocks/popup-image/__container/popup-image__container.css);
 /* wrapper */
 @import url(../blocks/wrapper/wrapper.css);
+/* popup_active */
+@import url(../blocks/popup/_active/popup_active.css);
 /* form */
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__input/form__input.css);
