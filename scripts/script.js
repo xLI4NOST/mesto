@@ -88,7 +88,9 @@ function setListenersForButtons(element) {
     const cardScreen = element.querySelector('.card__image')
     cardScreen.addEventListener('click', handleOpenCardImagePreview)
     const closeImagePopupButton = document.querySelector('.popup-image__close-icon')
-    closeImagePopupButton.addEventListener('click', closeImagePopup)
+    closeImagePopupButton.addEventListener('click', () => {
+        closePopup(popupImg)
+    })
 }
 
 
@@ -100,8 +102,7 @@ function handleOpenCardImagePreview(cardData) {
     popupImageOpenTitle.textContent = cardData.currentTarget.alt
     popupImages.alt = cardData.currentTarget.alt
     popupImages.src = cardData.currentTarget.currentSrc;
-    popupImg.classList.add('popup-image_active')
-    popupImg.classList.add('animation-open')
+    openPopup (popupImg)
 }
 
 
@@ -126,28 +127,15 @@ function handleLike(event) {
     currentLike.classList.toggle('card__button-like_active')
 }
 
-
-function openEditProfilePopup() {
-    popup.classList.add('popup_active');
-    textName.value = profileNameText.textContent;
-    textSubtitle.value = profileSubtitleText.textContent;
-    popup.classList.add('animation-open')
+//Открытие popup
+function openPopup(popupElem) {
+    popupElem.classList.add('popup_active');
+    popupElem.classList.add('animation-open');
 }
-
-function openEditCardsPopup() {
-    popupCards.classList.add('popup-cards_active');
-    popupCards.classList.add('animation-open')
-
-}
-
-function closeEditProfilePopup() {
-    popup.classList.remove('popup_active');
-    popup.classList.add('animation-close')
-}
-
-function closeEditCardsPopup() {
-    popupCards.classList.remove('popup-cards_active');
-
+//Закрытие popup
+function closePopup (popupElem) {
+    popupElem.classList.remove('popup_active');
+    popupElem.classList.remove('animation-open');
 }
 
 function handleSubmitProfileform(evt) {
@@ -157,8 +145,18 @@ function handleSubmitProfileform(evt) {
     closeEditProfilePopup();
 
 }
-cardCloseButton.addEventListener('click', closeEditCardsPopup)
-buttonClose.addEventListener('click', closeEditProfilePopup);
-buttonEditProfile.addEventListener('click', openEditProfilePopup);
+cardCloseButton.addEventListener('click', () => {
+    closePopup(popupCards)
+})
+buttonClose.addEventListener('click', () => {
+    closePopup(popup)
+});
+buttonEditProfile.addEventListener('click', () => {
+    textName.value = profileNameText.textContent;
+    textSubtitle.value = profileSubtitleText.textContent;
+    openPopup(popup);
+});
 formElement.addEventListener('submit', handleSubmitProfileform);
-addButton.addEventListener('click', openEditCardsPopup );
+addButton.addEventListener('click', () => {
+    openPopup(popupCards);
+} );
