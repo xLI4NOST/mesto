@@ -54,7 +54,6 @@
 /* footer */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
-
 /* animate */
 @import url(../blocks/animation-open/animation-open.css);
 @import url(../blocks/animation-close/animation-close.css)
