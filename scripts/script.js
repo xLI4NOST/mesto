@@ -88,8 +88,8 @@ function setListenersForButtons(element) {
 // Добавление модального окна
 const popupImg = document.querySelector('.popup_type_image');
 function handleOpenCardImagePreview(cardData) {
-    const popupImages = popupImg.querySelector('.popup_type_image__open-image');
-    const popupImageOpenTitle = popupImg.querySelector('.popup_type_image__title');
+    const popupImages = popupImg.querySelector('.image-container__open-image');
+    const popupImageOpenTitle = popupImg.querySelector('.image-container__title');
     popupImageOpenTitle.textContent = cardData.currentTarget.alt;
     popupImages.alt = cardData.currentTarget.alt;
     popupImages.src = cardData.currentTarget.currentSrc;
@@ -145,7 +145,7 @@ buttonAdd.addEventListener('click', () => {
 // Сабмит
 formCardsElement.addEventListener('submit', handleSubmit);
 
-const closeImagePopupButton = document.querySelector('.popup_type_image__close-icon')
+const closeImagePopupButton = document.querySelector('.image-container__close-icon')
 closeImagePopupButton.addEventListener('click', () => {
     closePopup(popupImg)
 });
