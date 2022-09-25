@@ -1,4 +1,4 @@
-.popup-image__container{
+.popup_type_image__container{
     margin: 13% auto;
     display: flex;
     justify-content: center;
@@ -6,7 +6,7 @@
 }
 
 @media screen and (max-width: 600px) {
-    .popup-image__container{
+    .popup_type_image__container{
         margin: 35% auto;
     }
 }

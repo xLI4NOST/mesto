@@ -9,7 +9,7 @@ const textSubtitle = document.querySelector('.form__input_type_job');
 const profileNameText = document.querySelector('.profile__name');
 const profileSubtitleText = document.querySelector('.profile__subtitle');
 const formElement = popup.querySelector('.form');
-const popupCards = document.querySelector('.popup-cards');
+const popupCards = document.querySelector('.popup_type_cards');
 const buttonAdd = document.querySelector(".profile__add-button");
 const cardCloseButton = document.querySelector('.menu__card-close');
 const container = document.querySelector('.elements');
@@ -86,10 +86,10 @@ function setListenersForButtons(element) {
 
 
 // Добавление модального окна
-const popupImg = document.querySelector('.popup-image');
+const popupImg = document.querySelector('.popup_type_image');
 function handleOpenCardImagePreview(cardData) {
-    const popupImages = popupImg.querySelector('.popup-image__open-image');
-    const popupImageOpenTitle = popupImg.querySelector('.popup-image__title');
+    const popupImages = popupImg.querySelector('.popup_type_image__open-image');
+    const popupImageOpenTitle = popupImg.querySelector('.popup_type_image__title');
     popupImageOpenTitle.textContent = cardData.currentTarget.alt;
     popupImages.alt = cardData.currentTarget.alt;
     popupImages.src = cardData.currentTarget.currentSrc;
@@ -145,7 +145,7 @@ buttonAdd.addEventListener('click', () => {
 // Сабмит
 formCardsElement.addEventListener('submit', handleSubmit);
 
-const closeImagePopupButton = document.querySelector('.popup-image__close-icon')
+const closeImagePopupButton = document.querySelector('.popup_type_image__close-icon')
 closeImagePopupButton.addEventListener('click', () => {
     closePopup(popupImg)
 });
