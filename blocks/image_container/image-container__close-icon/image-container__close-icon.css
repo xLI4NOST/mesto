@@ -1,4 +1,4 @@
-.шьфпу-сщтефштук__сдщыу-шсщт {
+.image-container__close-icon {
     position: relative;
     top: 0;
     left: 0;
@@ -8,6 +8,8 @@
     border: 0;
     margin: -38px 0 0 5px;
     background-repeat: no-repeat;
+    background: transparent;
+    background-image: url("../../../images/vector/Close_Icon.svg");
 }
 
 
