@@ -1,6 +1,7 @@
 .card__button-delete{
     position: absolute;
     background-image: url(../../../images/vector/delete_card.svg);
+    background-repeat: no-repeat;
     width: 18px;
     height: 19px;
     border: 0;
