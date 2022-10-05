@@ -18,6 +18,8 @@ const formButton = document.querySelector('.card_create');
 const mestoName = document.querySelector('.form-cards__input_type_text');
 const mestoLink = document.querySelector('.form-cards__input_type_link');
 const formCardsElement = document.querySelector('.form-cards');
+const menuTitle = document.querySelector ('.menu__title')
+const menuCardTitle = document.querySelector ('.menu__title-cards')
 
 
 const initialCards = [
@@ -138,95 +140,34 @@ formElement.addEventListener('submit', handleSubmitProfileForm);
 buttonAdd.addEventListener('click', () => {
     openPopup(popupCards);
 });
+//Закрытие попапов на Esc
+document.addEventListener('keydown', (e) => {
+    if (e.keyCode == 27) {
+        closePopup(popup)
+        closePopup(popupCards)
+        closePopup(popupImg)
+    }
+})
+document.addEventListener('click', (e) => {
+    const click = e.composedPath().includes(menu)|| e.composedPath().includes(buttonEditProfile) 
+    || e.composedPath().includes(buttonAdd) || e.composedPath().includes(formCardsElement) 
+    || e.composedPath().includes(menuTitle) || e.composedPath().includes(menuCardTitle) || e.composedPath().includes(popupImages)
+    if (!click) {
+        closePopup(popup)
+        closePopup(popupCards)
+        closePopup(popupImg)
+    }
+    console.log(click);
+})
 
 // Сабмит
 formCardsElement.addEventListener('submit', handleSubmit);
-
-
 const closeImagePopupButton = document.querySelector('.image-container__close-icon')
 closeImagePopupButton.addEventListener('click', () => {
     closePopup(popupImg)
 });
 
 
-//Ошибки
-
-const showError = (input) => {
-    input.classList.add ('form__error_visible')
-};
-const hideError = (input) => {
-    input.classList.remove ('form__error_visible')
-}
 //Валидация
-const formCards = document.forms.formCards;
-const formProfile =  document.forms.formProfile
-function isValid (input){
-    
-}
-//вызов ошибки
-function inValid (input){
-const errorSpan = input.parentNode.querySelector(`#${input.id}-error`);
-isValid(input)
- errorSpan.textContent = input.validationMessage;
-}
-function setSubmitButton (button, state){
-if (state) {
-button.removeAttribute ('disabled')
-button.classList.add ('form__button_active')
-} else{
-    button.setAttribute ('disabled', true)
-    button.classList.remove ('form__button_active')
-}
-}
 
 
-function handleValidateInput (evt){
-const currentForm = evt.currentTarget;
-const submitButton = currentForm.querySelector('.menu__button');
-inValid(evt.target);
-if(currentForm.checkValidity()){
-    setSubmitButton(submitButton, true)
-} else{
-    setSubmitButton(submitButton, false)
-    
-}
-}
-
-
-
-//Проверка форм после сабмита
-function sendForm (evt) {
-    evt.preventDefault();
-    const currentForm = evt.target;
-
-    if (currentForm.checkValidity()){
-        closePopup(popup)
-        closePopup(popupCards)
-        currentForm.reset();
-    } else {
-        console.log('Ты пидарас');
-    }
-}
-
-formCards.addEventListener ('submit', sendForm);
-formCards.addEventListener ('input', handleValidateInput);
-
-formProfile.addEventListener ('submit', sendForm);
-formProfile.addEventListener ('input', handleValidateInput);
-
-
-
-
-
-// const checkInputValidity = () =>{
-//     if (!textName.validity.valid){
-//         showError(textName)
-//     } else{
-//         hideError(textName)
-//     }
-// }
-
-
-// textName.addEventListener ('input', function(){
-//     checkInputValidity()
-// })
