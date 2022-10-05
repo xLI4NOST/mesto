@@ -20,7 +20,9 @@ const mestoLink = document.querySelector('.form-cards__input_type_link');
 const formCardsElement = document.querySelector('.form-cards');
 const menuTitle = document.querySelector ('.menu__title')
 const menuCardTitle = document.querySelector ('.menu__title-cards')
-
+const popupImg = document.querySelector('.popup_type_image');
+const popupImages = popupImg.querySelector('.image-container__open-image');
+const popupImageOpenTitle = popupImg.querySelector('.image-container__title');
 
 const initialCards = [
     {
@@ -49,48 +51,11 @@ const initialCards = [
     }
 ];
 
-//Перебор массива
-initialCards.forEach(function (value) {
-    const item = renderItem(value.name, value.link);
-    container.prepend(item);
-});
 
-// функция рендеренга
-function renderItem(text, link) {
-    const newCard = cardTemplate.cloneNode(true) //Клоним кароточку
-    const cardTitle = newCard.querySelector('.card__title')
-    const cardImage = newCard.querySelector('.card__image')
-    cardImage.src = link
-    cardImage.alt = text
-    cardTitle.textContent = text;
-    //Добавить обработчик
-    setListenersForButtons(newCard);
-    //Возвращаем карточку
-    return newCard;
 
-}
-//Добавление карточки 
-function handleSubmit(evt) {
-    evt.preventDefault()
-    const item = renderItem(mestoName.value, mestoLink.value);
-    container.prepend(item);
-
-}
-// Создать обработчики для кнопок
-function setListenersForButtons(element) {
-    const cardDeleteButton = element.querySelector('.card__button-delete');
-    cardDeleteButton.addEventListener('click', handleDelete);
-    const cardLikeButton = element.querySelector('.card__button-like');
-    cardLikeButton.addEventListener('click', handleLike);
-    const cardScreen = element.querySelector('.card__image');
-    cardScreen.addEventListener('click', handleOpenCardImagePreview);
-}
 
 
 // Добавление модального окна
-const popupImg = document.querySelector('.popup_type_image');
-const popupImages = popupImg.querySelector('.image-container__open-image');
-const popupImageOpenTitle = popupImg.querySelector('.image-container__title');
 function handleOpenCardImagePreview(cardData) {
     popupImageOpenTitle.textContent = cardData.currentTarget.alt;
     popupImages.alt = cardData.currentTarget.alt;
@@ -98,16 +63,7 @@ function handleOpenCardImagePreview(cardData) {
     openPopup(popupImg);
 }
 
-//Удаление карточки
-function handleDelete(event) {
-    const currentCard = event.target.closest('.card');
-    currentCard.remove()
-};
-// кнопка лайка 
-function handleLike(event) {
-    const currentLike = event.target.closest('.card__button-like')
-    currentLike.classList.toggle('card__button-like_active')
-};
+
 
 //Открытие popup
 function openPopup(popupElem) {
@@ -127,27 +83,7 @@ function handleSubmitProfileForm(evt) {
     profileNameText.textContent = textName.value;
     profileSubtitleText.textContent = textSubtitle.value;
 };
-cardCloseButton.addEventListener('click', () => {
-    closePopup(popupCards)
-});
-buttonClose.addEventListener('click', () => {
-    closePopup(popup)
-});
-buttonEditProfile.addEventListener('click', () => {
-    openPopup(popup);
-});
-formElement.addEventListener('submit', handleSubmitProfileForm);
-buttonAdd.addEventListener('click', () => {
-    openPopup(popupCards);
-});
-//Закрытие попапов на Esc
-document.addEventListener('keydown', (e) => {
-    if (e.keyCode == 27) {
-        closePopup(popup)
-        closePopup(popupCards)
-        closePopup(popupImg)
-    }
-})
+
 document.addEventListener('click', (e) => {
     const click = e.composedPath().includes(menu)|| e.composedPath().includes(buttonEditProfile) 
     || e.composedPath().includes(buttonAdd) || e.composedPath().includes(formCardsElement) 
@@ -160,14 +96,8 @@ document.addEventListener('click', (e) => {
     console.log(click);
 })
 
-// Сабмит
-formCardsElement.addEventListener('submit', handleSubmit);
-const closeImagePopupButton = document.querySelector('.image-container__close-icon')
-closeImagePopupButton.addEventListener('click', () => {
-    closePopup(popupImg)
-});
 
 
-//Валидация
+
 
 
