@@ -1,3 +1,4 @@
+//Валидация
 const formCards = document.forms.formCards;
 const formProfile = document.forms.formProfile
 

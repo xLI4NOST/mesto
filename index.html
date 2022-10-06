@@ -39,10 +39,10 @@
             <h2 class="menu__title">Редактировать профиль</h2>
             <form class="form" novalidate name="formProfile" >
                 <input id = "user-name" type="text" name="menuName" required minlength="2" maxlength="40" placeholder="Жак-Ив Кусто" class="form__input form__input_type_name">
-                <span id= "user-name-error" class="form__error"></span>
+                <span id= "user-name-error" class="error-span"></span>
                 <input id = "about" type="text" name="menuSubtitle" required minlength="2" maxlength="200" placeholder="Исследователь океана"
                     class="form__input form__input_type_job">
-                    <span id= "about-error" class="form__error"></span>
+                    <span id= "about-error" class="error-span"></span>
                 <button disabled type="submit" class="menu__button">
                     Сохранить
                 </button>
@@ -55,10 +55,10 @@
             <h2 class="menu__title menu__title-cards">Новое место</h2>
             <form class="form-cards" name="formCards"  novalidate>
                 <input id = "cardName" type="text" name="nameCard" placeholder="Название" minlength="2" maxlength="30" required novalidate class="form-cards__input form-cards__input_type_text">
-                <span id= "cardName-error" class="form__error"></span>
+                <span id= "cardName-error" class="error-span"></span>
                 <input id = "link" type="url" name="linkCard" required novalidate minlength="2" placeholder="Ссылка на картинку"
                     class="form-cards__input form-cards__input_type_link">
-                    <span id= "link-error" class="form__error"></span>
+                    <span id= "link-error" class="error-span"></span>
                 <button disabled type="submit" class="menu__button menu-cards__buttonCreate" value="Создать">
                     Создать
                 </button>
@@ -83,8 +83,11 @@
             <button class="image-container__close-icon" type="button"></button>
         </div>
     </div>
+    <script src="./scripts/const.js"></script>
+    <script src ="./scripts/cards.js"></script>
+    <script src ="./scripts/popup.js"></script>
+    <script src="./scripts/buttons.js"></script>
     <script src="./scripts/validate.js"></script>    
-    <script src="./scripts/script.js"></script>
 </body>
 
 </html>
