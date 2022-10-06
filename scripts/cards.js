@@ -25,15 +25,6 @@ function handleSubmit(evt) {
     container.prepend(item);
 
 }
-<<<<<<< HEAD
-=======
-
-//Удаление карточки
-function handleDelete(event) {
-    const currentCard = event.target.closest('.card');
-    currentCard.remove()
-};
->>>>>>> c2b395face0f2a3baea78a59d7bd13b6ab42e2bd
 // Создать обработчики для кнопок
 function setListenersForButtons(element) {
     const cardDeleteButton = element.querySelector('.card__button-delete');
@@ -44,7 +35,6 @@ function setListenersForButtons(element) {
     cardScreen.addEventListener('click', handleOpenCardImagePreview);
 }
 
-<<<<<<< HEAD
 
 //Удаление карточки
 function handleDelete(event) {
@@ -66,8 +56,6 @@ function handleOpenCardImagePreview(cardData) {
 }
 
 // Сабмит
-=======
->>>>>>> c2b395face0f2a3baea78a59d7bd13b6ab42e2bd
 formCardsElement.addEventListener('submit', handleSubmit);
 const closeImagePopupButton = document.querySelector('.image-container__close-icon')
 closeImagePopupButton.addEventListener('click', () => {
