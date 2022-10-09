@@ -67,6 +67,8 @@ function openPopup(popupElem) {
     popupElem.classList.remove('animation-close')
     popupElem.classList.add('animation-open');
     popupElem.classList.add('popup_active');
+    textName.value = profileNameText.textContent 
+    textSubtitle.value = profileSubtitleText.textContent
 };
 //Закрытие popup
 function closePopup(popupElem) {
