@@ -3,7 +3,7 @@ const formCards = document.forms.formCards;
 const formProfile = document.forms.formProfile
 
 //вызов ошибки
-function inValid(input) {
+function setInValid(input) {
     const errorSpan = input.parentNode.querySelector(`#${input.id}-error`);
     errorSpan.textContent = input.validationMessage;
     input.style.borderBottom= '1px solid red'
@@ -23,7 +23,7 @@ function setSubmitButton(button, state) {
 function handleValidateInput(evt) {
     const currentForm = evt.currentTarget;
     const submitButton = currentForm.querySelector('.menu__button');
-    inValid(evt.target);
+    setInValid(evt.target);
     if (currentForm.checkValidity()) {
         setSubmitButton(submitButton, true)
         
@@ -37,7 +37,7 @@ function sendForm(evt) {
     evt.preventDefault();
     const currentForm = evt.target;
     if (currentForm.checkValidity()) {
-        closePopup(popup)
+        closePopup(popupEditProfile)
         closePopup(popupCards)
         currentForm.reset();
     } else {

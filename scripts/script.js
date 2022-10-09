@@ -76,7 +76,7 @@ function closePopup(popupElem) {
 };
 document.addEventListener('keydown', (e) => {
     if (e.keyCode == 27) {
-        closePopup(popup)
+        closePopup(popupEditProfile)
         closePopup(popupCards)
         closePopup(popupImg)
     }
@@ -86,7 +86,7 @@ document.addEventListener('click', (e) => {
     || e.composedPath().includes(buttonAdd) || e.composedPath().includes(formCardsElement) 
     || e.composedPath().includes(menuTitle) || e.composedPath().includes(menuCardTitle) || e.composedPath().includes(popupImages)
     if (!click) {
-        closePopup(popup)
+        closePopup(popupEditProfile)
         closePopup(popupCards)
     }
     console.log(click);
@@ -102,10 +102,10 @@ cardCloseButton.addEventListener('click', () => {
     closePopup(popupCards)
 });
 buttonClose.addEventListener('click', () => {
-    closePopup(popup)
+    closePopup(popupEditProfile)
 });
 buttonEditProfile.addEventListener('click', () => {
-    openPopup(popup);
+    openPopup(popupEditProfile);
 });
 formElement.addEventListener('submit', handleSubmitProfileForm);
 buttonAdd.addEventListener('click', () => {
