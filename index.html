@@ -43,7 +43,7 @@
                 <input id = "about" type="text" name="menuSubtitle" required minlength="2" maxlength="200" placeholder="Вид деятельности"
                     class="form__input form__input_type_job">
                     <span id= "about-error" class="error-span"></span>
-                <button disabled type="submit" class="menu__button">
+                <button disabled type="submit" class="menu__button menu__submit">
                     Сохранить
                 </button>
             </form>
@@ -53,13 +53,13 @@
         <div class="menu-cards menu">
             <button class="menu__close-icon menu__card-close" type="button"></button>
             <h2 class="menu__title menu__title-cards">Новое место</h2>
-            <form class="form-cards" name="formCards"  novalidate>
-                <input id = "cardName" type="text" name="nameCard" placeholder="Название" minlength="2" maxlength="30" required novalidate class="form-cards__input form-cards__input_type_text">
+            <form class=" form form-cards" name="formCards"  novalidate>
+                <input id = "cardName" type="text" name="nameCard" placeholder="Название" minlength="2" maxlength="30" required novalidate class="form__input form-cards__input form-cards__input_type_text">
                 <span id= "cardName-error" class="error-span"></span>
                 <input id = "link" type="url" name="linkCard" required novalidate minlength="2" placeholder="Ссылка на картинку"
-                    class="form-cards__input form-cards__input_type_link">
+                    class="form__input form-cards__input form-cards__input_type_link">
                     <span id= "link-error" class="error-span"></span>
-                <button disabled type="submit" class="menu__button menu-cards__buttonCreate" value="Создать">
+                <button disabled type="submit" class="menu__button menu-cards__buttonCreate menu__submit" value="Создать">
                     Создать
                 </button>
             </form>
@@ -85,7 +85,7 @@
     </div>
     <script src="./scripts/const.js"></script>
     <script src="./scripts/script.js"></script>
-    <script src="./scripts/validate.js"></script>    
+    <script src="./scripts/validate.js"></script>
 
 </body>
 

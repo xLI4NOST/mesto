@@ -12,6 +12,10 @@
     border-bottom: 1px solid #000000;
 }
 
+.form__input_error {
+    border-bottom: 1px solid red;
+}
+
 @media screen and (max-width: 879px) {
     .form__input{
         max-width: 238px;

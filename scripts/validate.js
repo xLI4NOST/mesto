@@ -1,51 +1,56 @@
-//Валидация
-const formCards = document.forms.formCards;
-const formProfile = document.forms.formProfile
-
 //вызов ошибки
-function setInValid(input) {
+function updateInputValidation(settings, input) {
     const errorSpan = input.parentNode.querySelector(`#${input.id}-error`);
     errorSpan.textContent = input.validationMessage;
-    input.style.borderBottom= '1px solid red'
+    if(errorSpan.textContent !== "") {
+        input.classList.add(settings.inputErrorClass);
+        errorSpan.classList.add(settings.errorClass);
+    } else {
+        input.classList.remove(settings.inputErrorClass);
+        errorSpan.classList.remove(settings.errorClass);
+    }
 }
+
 //Правила для кнопки сабмита
-function setSubmitButton(button, state) {
+function updateSubmitButton(settings, button, state) {
     if (state) {
-        button.removeAttribute('disabled')
-        button.classList.add('form__button_active')
-        
+        button.removeAttribute('disabled');
+        button.classList.add(settings.activeButtonClass);
     } else {
-        button.setAttribute('disabled', true)
-        button.classList.remove('form__button_active')
+        button.setAttribute('disabled', true);
+        button.classList.remove(settings.activeButtonClass);
+    }
+}
+//Навесить обработчики для инпутов
+function setFormEventListeners(settings, form) {
+    const allInputs = form.querySelectorAll(settings.inputSelector);
+    const submitButton = form.querySelector(settings.submitButtonSelector);
+
+    for(let input of allInputs) {
+        input.addEventListener('input', () => {
+            updateInputValidation(settings, input);
+            updateSubmitButton(settings, submitButton, form.checkValidity());
+        });
+    }
+
+    form.addEventListener('reset', evt => {
+        updateSubmitButton(settings, submitButton, false);
+    });
+}
+
+function enableValidation(settings) {
+    const allForms = document.querySelectorAll(settings.formSelector);
+
+    for (let form of allForms) {
+        setFormEventListeners(settings, form);
     }
 }
 
-function handleValidateInput(evt) {
-    const currentForm = evt.currentTarget;
-    const submitButton = currentForm.querySelector('.menu__button');
-    setInValid(evt.target);
-    if (currentForm.checkValidity()) {
-        setSubmitButton(submitButton, true)
-        
-    } else {
-        setSubmitButton(submitButton, false)
-    }
-}
-
-//Проверка форм после сабмита
-function sendForm(evt) {
-    evt.preventDefault();
-    const currentForm = evt.target;
-    if (currentForm.checkValidity()) {
-        closePopup(popupEditProfile)
-        closePopup(popupCards)
-        currentForm.reset();
-    } else {
-    }
-}
-//Слушатели
-formCards.addEventListener('submit', sendForm);
-formCards.addEventListener('input', handleValidateInput);
-
-formProfile.addEventListener('submit', sendForm);
-formProfile.addEventListener('input', handleValidateInput);
+enableValidation({
+    formSelector: '.form',
+    inputSelector: '.form__input',
+    submitButtonSelector: '.menu__submit',
+    activeButtonClass: 'form__button_active',
+    inputErrorClass: 'form__input_error',
+    errorClass: 'error-span_visible'
+});
