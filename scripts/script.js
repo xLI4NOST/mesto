@@ -47,6 +47,7 @@ function handleLike(event) {
     currentLike.classList.toggle('card__button-like_active')
 };
 
+
 // Добавление модального окна
 function handleOpenCardImagePreview(cardData) {
     popupImageOpenTitle.textContent = cardData.currentTarget.alt;
@@ -62,35 +63,32 @@ closeImagePopupButton.addEventListener('click', () => {
 
 //Открытие popup
 function openPopup(popupElem) {
-    popupElem.classList.remove('animation-close')
-    addClickListner ()
+    popupElem.classList.remove('animation-close');
     popupElem.classList.add('popup_active');
     textName.value = profileNameText.textContent 
     textSubtitle.value = profileSubtitleText.textContent
 };
 //Закрытие popup
-function closePopup(popupElem) {
-    setTimeout(() => popupElem.classList.remove('popup_active'), 500);
-    popupElem.classList.add('animation-close');
+function closePopup() {
+    let popupElem = document.querySelector('.popup_active');
+    if(popupElem) {
+        setTimeout(() => popupElem.classList.remove('popup_active'), 500);
+        popupElem.classList.add('animation-close');
+    }
 };
-
 document.addEventListener('keydown', (e) => {
-    if (e.keyCode === 27) {
+    if (e.keyCode === esc) {
+        closePopup()
     }
 });
-
-function addClickListner () {
-document.addEventListener('click', (e) => {
-    const click = e.composedPath().includes(menu)|| e.composedPath().includes(buttonEditProfile) 
-    || e.composedPath().includes(buttonAdd) || e.composedPath().includes(formCardsElement) 
-    || e.composedPath().includes(menuTitle) || e.composedPath().includes(menuCardTitle) || e.composedPath().includes(popupImages)
-    if (!click) {
-        closePopup(popupEditProfile)
-        closePopup(popupCards)
-    }
-    console.log(click);
-})
-}
+//Закрытие popup по пустому месту
+document.querySelectorAll('.popup').forEach((elem) => {
+    elem.addEventListener('click', (evt) => {
+        if(evt.currentTarget === evt.target) {
+            closePopup();
+        }
+    })
+});
 
 // Форма добавления картинки
 buttonAdd.addEventListener('click', () => {
