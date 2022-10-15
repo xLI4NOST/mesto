@@ -23,7 +23,9 @@ const menuCardTitle = document.querySelector ('.menu__title-cards')
 const popupImg = document.querySelector('.popup_type_image');
 const popupImages = popupImg.querySelector('.image-container__open-image');
 const popupImageOpenTitle = popupImg.querySelector('.image-container__title');
-const esc = 27
+const esc = 27;
+const formAddCard = popupCards.querySelector('.form');
+const allPopUps = document.querySelectorAll('.popup');
 
 const initialCards = [
     {
