@@ -49,10 +49,9 @@ function handleOpenCardImagePreview(cardData) {
     popupImages.src = cardData.currentTarget.currentSrc;
     openPopup(popupImg);
 }
-
-const closeImagePopupButton = document.querySelector('.image-container__close-icon')
+//Закртие картинки на крестик
 closeImagePopupButton.addEventListener('click', () => {
-    closePopup()
+    closePopup(popupImg)
 });
 
 //Открытие popup
@@ -61,31 +60,24 @@ function openPopup(popupElem) {
     popupElem.classList.add('popup_active');
     document.addEventListener('keydown', (e) => {
         if (e.keyCode === esc) {
-            closePopup()
+            closePopup(popupElem)
         }
     });
 };
 
 
 //Закрытие popup
-function closePopup() {
-    let popupElem = document.querySelector('.popup_active');
-    if(popupElem) {
+function closePopup(popupElem) {
         setTimeout(() => popupElem.classList.remove('popup_active'), 500);
         popupElem.classList.add('animation-close');
-    }
-    document.removeEventListener('keydown', (e) => {
-        if (e.keyCode === esc) {
-            closePopup()
-        }
-    });
 };
 
+
 //Закрытие popup по пустому месту
-allPopUps.forEach((elem) => {
-    elem.addEventListener('click', (evt) => {
+allPopUps.forEach((popupElem) => {
+    popupElem.addEventListener('click', (evt) => {
         if(evt.currentTarget === evt.target) {
-            closePopup();
+            closePopup(popupElem);
         }
     })
 });
@@ -123,10 +115,10 @@ function addPopupEventHandlers(popupElement, submitHandler) {
     fillInFormInputs()
     form.addEventListener('submit', evt => {
         submitHandler(evt);
-        closePopup();
+        closePopup(popupElement);
     });
 
     closeButton.addEventListener('click', () => {
-        closePopup();
+        closePopup(popupElement);
     });
 }

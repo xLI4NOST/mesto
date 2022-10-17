@@ -26,6 +26,8 @@ const popupImageOpenTitle = popupImg.querySelector('.image-container__title');
 const esc = 27;
 const formAddCard = popupCards.querySelector('.form');
 const allPopUps = document.querySelectorAll('.popup');
+let popupElem = document.querySelector('.popup_active');
+const closeImagePopupButton = document.querySelector('.image-container__close-icon')
 
 const initialCards = [
     {
