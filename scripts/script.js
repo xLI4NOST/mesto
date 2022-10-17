@@ -58,18 +58,21 @@ closeImagePopupButton.addEventListener('click', () => {
 function openPopup(popupElem) {
     popupElem.classList.remove('animation-close');
     popupElem.classList.add('popup_active');
-    document.addEventListener('keydown', (e) => {
-        if (e.keyCode === esc) {
-            closePopup(popupElem)
-        }
-    });
+    document.addEventListener('keydown', closeEsc)
 };
 
+function closeEsc (e){
+    if (e.keyCode === esc ){
+        const popupElem = document.querySelector('.popup_active');
+        closePopup(popupElem);
+    }
+}
 
 //Закрытие popup
 function closePopup(popupElem) {
-        setTimeout(() => popupElem.classList.remove('popup_active'), 500);
-        popupElem.classList.add('animation-close');
+    setTimeout(() => popupElem.classList.remove('popup_active'), 500);
+    popupElem.classList.add('animation-close');
+    document.removeEventListener('keydown', closeEsc);
 };
 
 
