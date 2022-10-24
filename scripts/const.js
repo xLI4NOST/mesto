@@ -13,7 +13,6 @@ const popupCards = document.querySelector('.popup_type_cards');
 const buttonAdd = document.querySelector(".profile__add-button");
 const cardCloseButton = document.querySelector('.menu__card-close');
 const container = document.querySelector('.elements');
-const cardTemplate = document.querySelector('.card-template').content
 const formButton = document.querySelector('.card_create');
 const mestoName = document.querySelector('.form-cards__input_type_text');
 const mestoLink = document.querySelector('.form-cards__input_type_link');

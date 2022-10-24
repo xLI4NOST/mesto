@@ -1,23 +1,55 @@
-//Перебор массива
-initialCards.forEach(function (value) {
-    const item = renderItem(value.name, value.link);
-    container.prepend(item);
-});
+class Card {
+    constructor (title, image){
+    this._cardImage = link
+    this._cardTitle = title
+    }
+    _getTemplate (){
+        const cardTemplate = document.querySelector ('.card-template')
+        .content
+        .querySelector ('.card')
+        .cloneNode(true)
+        return cardTemplate
+    }
+
+    generateCard(){
+        const cardTitle = document.querySelector('.card__title')
+        const cardImage = document.querySelector('.card__image')
+        this._element = this._getTemplate()
+        this._element.querySelector ('.card__image').src = link
+        this._element.querySelector ('.card__title').textContent = name
+        return this._element
+    }
+}
+
+
+// //Перебор массива
+// initialCards.forEach(function (value) {
+//     const item = renderItem(value.name, value.link);
+//     container.prepend(item);
+// });
+
+initialCards.forEach ((item) => {
+    const card = new Card (item.name, item.link)
+    const cardElement = card.generateCard()
+    container.prepend (cardElement)
+}
+)
+
+
 
 // функция рендеренга
-function renderItem(text, link) {
-    const newCard = cardTemplate.cloneNode(true) //Клоним кароточку
-    const cardTitle = newCard.querySelector('.card__title')
-    const cardImage = newCard.querySelector('.card__image')
-    cardImage.src = link
-    cardImage.alt = text
-    cardTitle.textContent = text;
-    //Добавить обработчик
-    setListenersForButtons(newCard);
-    //Возвращаем карточку
-    return newCard;
-
-}
+// function renderItem(text, link) {
+//     const newCard = cardTemplate.cloneNode(true) //Клоним кароточку
+//     const cardTitle = newCard.querySelector('.card__title')
+//     const cardImage = newCard.querySelector('.card__image')
+//     cardImage.src = link
+//     cardImage.alt = text
+//     cardTitle.textContent = text;
+//     //Добавить обработчик
+//     setListenersForButtons(newCard);
+//     //Возвращаем карточку
+//     return newCard;
+// }
 
 // Создать обработчики для кнопок
 function setListenersForButtons(element) {
