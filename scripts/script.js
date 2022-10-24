@@ -1,6 +1,6 @@
 class Card {
     constructor (title, image){
-    this._cardImage = link
+    this._cardImage = image
     this._cardTitle = title
     }
     _getTemplate (){
@@ -15,8 +15,9 @@ class Card {
         const cardTitle = document.querySelector('.card__title')
         const cardImage = document.querySelector('.card__image')
         this._element = this._getTemplate()
-        this._element.querySelector ('.card__image').src = link
-        this._element.querySelector ('.card__title').textContent = name
+        this._element.querySelector ('.card__image').src = this._cardImage
+        this._element.querySelector ('.card__image').alt = this._cardTitle
+        this._element.querySelector ('.card__title').textContent = this._cardTitle
         return this._element
     }
 }
