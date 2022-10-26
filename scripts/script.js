@@ -1,7 +1,7 @@
 class Card {
     constructor (title, image){
-    this._cardImage = image
-    this._cardTitle = title
+        this._cardTitle = title
+        this._cardImage = image
     }
     _getTemplate (){
         const cardTemplate = document.querySelector ('.card-template')
@@ -20,14 +20,16 @@ class Card {
         this._element.querySelector ('.card__title').textContent = this._cardTitle
         return this._element
     }
+    _handleOpenPopup(){
+        popupImg.src = this._cardImage
+        popupImg.classList.add('popup_active');
+    }
+    _setEventListiners (){
+        this._element.addEventListener ('click', ()=>{
+            this._handleOpenPopup()
+        })
+    }
 }
-
-
-// //Перебор массива
-// initialCards.forEach(function (value) {
-//     const item = renderItem(value.name, value.link);
-//     container.prepend(item);
-// });
 
 initialCards.forEach ((item) => {
     const card = new Card (item.name, item.link)
@@ -36,21 +38,6 @@ initialCards.forEach ((item) => {
 }
 )
 
-
-
-// функция рендеренга
-// function renderItem(text, link) {
-//     const newCard = cardTemplate.cloneNode(true) //Клоним кароточку
-//     const cardTitle = newCard.querySelector('.card__title')
-//     const cardImage = newCard.querySelector('.card__image')
-//     cardImage.src = link
-//     cardImage.alt = text
-//     cardTitle.textContent = text;
-//     //Добавить обработчик
-//     setListenersForButtons(newCard);
-//     //Возвращаем карточку
-//     return newCard;
-// }
 
 // Создать обработчики для кнопок
 function setListenersForButtons(element) {
@@ -125,7 +112,7 @@ buttonAdd.addEventListener('click', () => {
 });
 addPopupEventHandlers(popupCards, (evt) => {
     evt.preventDefault()
-    const item = renderItem(mestoName.value, mestoLink.value);
+    const item = generateCard(mestoName.value, mestoLink.value);
     container.prepend(item);
 });
 
