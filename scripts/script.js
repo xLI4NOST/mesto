@@ -1,5 +1,5 @@
 class Card {
-    constructor (title, image){
+    constructor (title, image, ){
         this._cardTitle = title
         this._cardImage = image
     }
@@ -19,7 +19,6 @@ class Card {
         this._element.querySelector ('.card__image').alt = this._cardTitle
         this._element.querySelector ('.card__title').textContent = this._cardTitle
         this._setEventListiners();
-        // this._handleDeleteCard();
         return this._element
     }
     _handleOpenPopup(){
@@ -27,12 +26,27 @@ class Card {
         popupImages.alt = this._cardTitle
         openPopup(popupImg)
     }
-
+    // _hendleDeleteCard (event){
+    //     const cardDeleteButton = document.querySelector('.card__button-delete');
+    //     this._currentCard = event.target.closest ('.card')
+    //     this._currentCard.remove()
+    // }
+    _handleAddCard (){
+        const card = new Card ()
+        const item = card.generateCard()
+        item.title = mestoName.value
+        item.src = mestoLink.value
+        container.prepend(item)
+    }
     _setEventListiners (){
-        this._element.addEventListener ('click', ()=>{
+        const img = this._element.querySelector ('.card__image')
+        img.addEventListener ('click', ()=>{
             this._handleOpenPopup()
         })
-        
+        saveButton.addEventListener ('click', (evt)=>{
+            evt.preventDefault()
+            this._handleAddCard()
+        })
     }
 }
 
@@ -44,10 +58,11 @@ initialCards.forEach ((item) => {
 )
 
 
+
 // Создать обработчики для кнопок
 function setListenersForButtons(element) {
-    const cardDeleteButton = element.querySelector('.card__button-delete');
-    cardDeleteButton.addEventListener('click', handleDeleteCard);
+    // const cardDeleteButton = element.querySelector('.card__button-delete');
+    // cardDeleteButton.addEventListener('click', handleDeleteCard);
     const cardLikeButton = element.querySelector('.card__button-like');
     cardLikeButton.addEventListener('click', handleLikeCard);
     const cardScreen = element.querySelector('.card__image');
@@ -55,11 +70,11 @@ function setListenersForButtons(element) {
 }
 
 
-//Удаление карточки
-function handleDeleteCard(event) {
-    const currentCard = event.target.closest('.card');
-    currentCard.remove()
-};
+// //Удаление карточки
+// function handleDeleteCard(event) {
+//     const currentCard = event.target.closest('.card');
+//     currentCard.remove()
+// };
 // кнопка лайка 
 function handleLikeCard(event) {
     const currentLike = event.target.closest('.card__button-like')
@@ -115,11 +130,7 @@ buttonAdd.addEventListener('click', () => {
     formAddCard.reset();
     openPopup(popupCards);
 });
-addPopupEventHandlers(popupCards, (evt) => {
-    evt.preventDefault()
-    const item = generateCard(mestoName.value, mestoLink.value);
-    container.prepend(item);
-});
+
 
 // Форма редактирования профиля
 buttonEditProfile.addEventListener('click', () => {
