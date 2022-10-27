@@ -18,16 +18,21 @@ class Card {
         this._element.querySelector ('.card__image').src = this._cardImage
         this._element.querySelector ('.card__image').alt = this._cardTitle
         this._element.querySelector ('.card__title').textContent = this._cardTitle
+        this._setEventListiners();
+        // this._handleDeleteCard();
         return this._element
     }
     _handleOpenPopup(){
-        popupImg.src = this._cardImage
-        popupImg.classList.add('popup_active');
+        popupImages.src = this._cardImage
+        popupImages.alt = this._cardTitle
+        openPopup(popupImg)
     }
+
     _setEventListiners (){
         this._element.addEventListener ('click', ()=>{
             this._handleOpenPopup()
         })
+        
     }
 }
 
