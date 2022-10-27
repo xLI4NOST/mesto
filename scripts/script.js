@@ -21,11 +21,18 @@ class Card {
         this._setEventListiners();
         return this._element
     }
-    _handleOpenPopup() {
+    _handleOpenPopupImg() {
         popupImages.src = this._cardImage
         popupImages.alt = this._cardTitle
         popupImageOpenTitle.textContent = this._cardTitle
         openPopup(popupImg)
+    }
+    _handleOpenPopupCard(){
+        openPopup(popupCards)
+    }
+    _handleClosePopup(){
+        const activePop = document.querySelector ('.popup_active')
+        closePopup(activePop)
     }
     _handleDeleteCard (event){
         this._currentCard = event.target.closest ('.card')
@@ -39,7 +46,7 @@ class Card {
     _setEventListiners() {
         const img = this._element.querySelector('.card__image')
         img.addEventListener('click', () => {
-            this._handleOpenPopup()
+            this._handleOpenPopupImg()
         })
         this._element.querySelector ('.card__button-delete')
         .addEventListener ('click', (event)=>{
@@ -49,6 +56,14 @@ class Card {
         .addEventListener ('click', (event)=>{
             this._handleLikeCard(event)
         })
+        document.querySelector ('.profile__add-button')
+        .addEventListener ('click', ()=>{
+            this._handleOpenPopupCard()
+        })
+        closeImagePopupButton
+        .addEventListener('click', () => {
+            this._handleClosePopup()
+        });
         
     }
 }
@@ -78,41 +93,24 @@ function handleLikeCard(event) {
     currentLike.classList.toggle('card__button-like_active')
 };
 
-
-// Добавление модального окна
-function handleOpenCardImagePreview(cardData) {
-    popupImageOpenTitle.textContent = cardData.currentTarget.alt;
-    popupImages.alt = cardData.currentTarget.alt;
-    popupImages.src = cardData.currentTarget.currentSrc;
-    openPopup(popupImg);
-}
-//Закртие картинки на крестик
-closeImagePopupButton.addEventListener('click', () => {
-    closePopup(popupImg)
-});
-
 //Открытие popup
 function openPopup(popupElem) {
     popupElem.classList.remove('animation-close');
     popupElem.classList.add('popup_active');
     document.addEventListener('keydown', closeEsc)
 };
-
 function closeEsc(e) {
     if (e.keyCode === esc) {
         const popupElem = document.querySelector('.popup_active');
         closePopup(popupElem);
     }
 }
-
 //Закрытие popup
 function closePopup(popupElem) {
     setTimeout(() => popupElem.classList.remove('popup_active'), 500);
     popupElem.classList.add('animation-close');
     document.removeEventListener('keydown', closeEsc);
 };
-
-
 //Закрытие popup по пустому месту
 allPopUps.forEach((popupElem) => {
     popupElem.addEventListener('click', (evt) => {
