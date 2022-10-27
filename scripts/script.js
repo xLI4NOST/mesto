@@ -24,6 +24,7 @@ class Card {
     _handleOpenPopup() {
         popupImages.src = this._cardImage
         popupImages.alt = this._cardTitle
+        popupImageOpenTitle.textContent = this._cardTitle
         openPopup(popupImg)
     }
     _handleDeleteCard (event){
@@ -56,8 +57,9 @@ function handleAddCard() {
     const card = new Card(mestoName.value, mestoLink.value)
     const item = card.generateCard()
     container.prepend(item)
+    formAddCard.reset();
 }
-//Обработчик
+//Обработчик карточки
 saveButton.addEventListener('click', (evt) => {
     evt.preventDefault()
     handleAddCard()
@@ -70,15 +72,7 @@ initialCards.forEach((item) => {
     const cardElement = card.generateCard()
     container.prepend(cardElement)
 })
-
-
-
-// //Удаление карточки
-// function handleDeleteCard(event) {
-//     const currentCard = event.target.closest('.card');
-//     currentCard.remove()
-// };
-// кнопка лайка 
+//обработчик маисва
 function handleLikeCard(event) {
     const currentLike = event.target.closest('.card__button-like')
     currentLike.classList.toggle('card__button-like_active')
@@ -127,13 +121,6 @@ allPopUps.forEach((popupElem) => {
         }
     })
 });
-
-// Форма добавления картинки
-buttonAdd.addEventListener('click', () => {
-    formAddCard.reset();
-    openPopup(popupCards);
-});
-
 
 // Форма редактирования профиля
 buttonEditProfile.addEventListener('click', () => {
