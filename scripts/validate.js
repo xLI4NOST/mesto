@@ -1,22 +1,26 @@
 class FormValidator {
-    constructor() {
-
+    constructor(validate){
+        this._formSelector = validate.formSelector
+        this._inputSelector = validate.inputSelector
+        this._submitButtonSelector = validate.submitButtonSelector
+        this._activeButtonClass = validate.activeButtonClass
+        this._inputErrorClass = validate.inputErrorClass
+        this._errorClass = validate.errorClass
     }
-
-}
-
-//вызов ошибки
-function updateInputValidation(settings, input) {
-    const errorSpan = input.parentNode.querySelector(`#${input.id}-error`);
-    errorSpan.textContent = input.validationMessage;
-    if(errorSpan.textContent !== "") {
+    updateInputValidation (settings, input){
+        const errorSpan = input.parentNode.querySelector(`#${input.id}-error`);
+        errorSpan.textContent = input.validationMessage;
+            if(errorSpan.textContent !== "") {
         input.classList.add(settings.inputErrorClass);
         errorSpan.classList.add(settings.errorClass);
     } else {
         input.classList.remove(settings.inputErrorClass);
         errorSpan.classList.remove(settings.errorClass);
     }
+    }
 }
+
+
 
 //Правила для кнопки сабмита
 function updateSubmitButton(settings, button, state) {
@@ -53,11 +57,4 @@ function enableValidation(settings) {
     }
 }
 
-enableValidation({
-    formSelector: '.form',
-    inputSelector: '.form__input',
-    submitButtonSelector: '.menu__submit',
-    activeButtonClass: 'form__button_active',
-    inputErrorClass: 'form__input_error',
-    errorClass: 'error-span_visible'
-});
+
