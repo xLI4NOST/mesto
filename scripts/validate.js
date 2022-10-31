@@ -18,9 +18,8 @@ class FormValidator {
         errorSpan.classList.remove(settings.errorClass);
     }
     }
+    updateInputValidation()
 }
-
-
 
 //Правила для кнопки сабмита
 function updateSubmitButton(settings, button, state) {
