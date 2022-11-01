@@ -27,9 +27,6 @@ class Card {
         popupImageOpenTitle.textContent = this._cardTitle
         openPopup(popupImg)
     }
-    _handleOpenPopupCard(){
-        openPopup(popupCards)
-    }
     _handleClosePopup(){
         const activePop = document.querySelector ('.popup_active')
         closePopup(activePop)
@@ -56,10 +53,7 @@ class Card {
         .addEventListener ('click', (event)=>{
             this._handleLikeCard(event)
         })
-        document.querySelector ('.profile__add-button')
-        .addEventListener ('click', ()=>{
-            this._handleOpenPopupCard()
-        })
+    
         closeImagePopupButton
         .addEventListener('click', () => {
             this._handleClosePopup()
@@ -123,7 +117,23 @@ allPopUps.forEach((popupElem) => {
 // Форма редактирования профиля
 buttonEditProfile.addEventListener('click', () => {
     openPopup(popupEditProfile);
+    const formCards = new FormValidator(settings, formElement)
+    formCards.enableValidation(settings, formElement)
 });
+
+//Открытие popupCards
+function handleOpenPopupCard (){
+    openPopup(popupCards)
+}
+document.querySelector ('.profile__add-button')
+.addEventListener ('click', ()=>{
+    const formCards = new FormValidator(settings, formCardsElement)
+    formCards.enableValidation(settings, formCardsElement)
+handleOpenPopupCard()
+})
+cardCloseButton.addEventListener ('click', ()=>{
+    closePopup(popupCards)
+})
 
 addPopupEventHandlers(popupEditProfile, (evt) => {
     evt.preventDefault();
