@@ -1,7 +1,7 @@
 class Card {
     constructor(data, templateSelector) {
-        this._title = data.title
-        this._image = data.image
+        this._cardTitle = data.title
+        this._cardImage = data.image
         this._templateSelector = templateSelector
     }
     _getTemplate() {
@@ -14,9 +14,9 @@ class Card {
 
     generateCard() {
         this._element = this._getTemplate()
-        this._element.querySelector('.card__image').src = this._image
-        this._element.querySelector('.card__image').alt = this._title
         this._element.querySelector('.card__title').textContent = this._title
+        this._element.querySelector('.card__image').alt = this._title
+        this._element.querySelector('.card__image').src = this._image
         this._setEventListiners();
         return this._element
     }
@@ -62,10 +62,12 @@ class Card {
 }
 //Добавление новой карточки
 function handleAddCard() {
-    const card = new Card(mestoName.value, mestoLink.value)
+    const card = new Card(data, '.card-template')
+
     const item = card.generateCard()
     container.prepend(item)
     formAddCard.reset();
+    
 }
 //Обработчик карточки
 saveButton.addEventListener('click', (evt) => {

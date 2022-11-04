@@ -17,6 +17,7 @@ class FormValidator {
         this._errorClass = settings.errorClass;
         this._form = form;
       }
+    
 //вызов ошибки
 _updateInputValidation(settings, input) {
     const errorSpan = input.parentNode.querySelector(`#${input.id}-error`);
