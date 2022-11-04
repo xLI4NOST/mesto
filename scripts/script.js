@@ -1,7 +1,7 @@
 class Card {
-    constructor(data, templateSelector) {
-        this._cardTitle = data.title
-        this._cardImage = data.image
+    constructor(title, image, templateSelector) {
+        this._cardTitle = title
+        this._cardImage = image
         this._templateSelector = templateSelector
     }
     _getTemplate() {
@@ -14,9 +14,9 @@ class Card {
 
     generateCard() {
         this._element = this._getTemplate()
-        this._element.querySelector('.card__title').textContent = this._title
-        this._element.querySelector('.card__image').alt = this._title
-        this._element.querySelector('.card__image').src = this._image
+        this._element.querySelector('.card__title').textContent = this._cardTitle
+        this._element.querySelector('.card__image').alt = this._cardTitle
+        this._element.querySelector('.card__image').src = this._cardImage
         this._setEventListiners();
         return this._element
     }
@@ -26,10 +26,7 @@ class Card {
         popupImageOpenTitle.textContent = this._cardTitle
         openPopup(popupImg)
     }
-    _handleClosePopup(){
-        const activePop = document.querySelector ('.popup_active')
-        closePopup(activePop)
-    }
+
     _handleDeleteCard (event){
         this._currentCard = event.target.closest ('.card')
         this._currentCard.remove()
@@ -52,18 +49,12 @@ class Card {
         .addEventListener ('click', (event)=>{
             this._handleLikeCard(event)
         })
-    
-        closeImagePopupButton
-        .addEventListener('click', () => {
-            this._handleClosePopup()
-        });
         
     }
 }
 //Добавление новой карточки
 function handleAddCard() {
-    const card = new Card(data, '.card-template')
-
+    const card = new Card(mestoName.value, mestoLink.value, '.card-template')
     const item = card.generateCard()
     container.prepend(item)
     formAddCard.reset();
@@ -78,10 +69,15 @@ saveButton.addEventListener('click', (evt) => {
 
 //Добавление карточек с массива
 initialCards.forEach((item) => {
-    const card = new Card(item, '.card-template')
+    const card = new Card(item.name, item.link, '.card-template')
     const cardElement = card.generateCard()
     container.prepend(cardElement)
 })
+
+//Закрытие модального окна 
+closeImagePopupButton.addEventListener('click', () => {
+    closePopup(popupImg)
+});
 
 //Открытие popup
 function openPopup(popupElem) {
