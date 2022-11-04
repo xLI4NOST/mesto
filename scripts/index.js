@@ -27,6 +27,7 @@ const formAddCard = popupCards.querySelector('.form');
 const allPopUps = document.querySelectorAll('.popup');
 const closeImagePopupButton = document.querySelector('.image-container__close-icon')
 const saveButton = document.querySelector ('.menu-cards__buttonCreate')
+const closeButton = document.querySelector('.menu__close-icon');
 
 const initialCards = [
     {
@@ -54,3 +55,93 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
+
+
+
+//Закрытие модального окна 
+closeImagePopupButton.addEventListener('click', () => {
+    closePopup(popupImg)
+});
+
+//Открытие popup
+function openPopup(popupElem) {
+    popupElem.classList.remove('animation-close');
+    popupElem.classList.add('popup_active');
+    document.addEventListener('keydown', closeEsc)
+};
+function closeEsc(e) {
+    if (e.keyCode === esc) {
+        const popupElem = document.querySelector('.popup_active');
+        closePopup(popupElem);
+    }
+}
+//Закрытие popup
+function closePopup(popupElem) {
+    setTimeout(() => popupElem.classList.remove('popup_active'), 500);
+    popupElem.classList.add('animation-close');
+    document.removeEventListener('keydown', closeEsc);
+};
+//Закрытие popup по пустому месту
+allPopUps.forEach((popupElem) => {
+    popupElem.addEventListener('click', (evt) => {
+        if (evt.currentTarget === evt.target) {
+            closePopup(popupElem);
+        }
+    })
+});
+
+// Форма редактирования профиля
+buttonEditProfile.addEventListener('click', () => {
+    openPopup(popupEditProfile);
+    fillInFormInputs()
+    const formCards = new FormValidator(settings, formElement)
+    formCards.enableValidation(settings, formElement)
+});
+
+//Открытие popupCards
+function handleOpenPopupCard (){
+    openPopup(popupCards)
+}
+document.querySelector ('.profile__add-button')
+.addEventListener ('click', ()=>{
+    const formCards = new FormValidator(settings, formCardsElement)
+    formCards.enableValidation(settings, formCardsElement)
+handleOpenPopupCard()
+})
+cardCloseButton.addEventListener ('click', ()=>{
+    closePopup(popupCards)
+})
+
+addPopupEventHandlers(popupEditProfile, (evt) => {
+    evt.preventDefault();
+    profileNameText.textContent = textName.value;
+    profileSubtitleText.textContent = textSubtitle.value;
+});
+
+function fillInFormInputs() {
+    textName.value = profileNameText.textContent
+    textSubtitle.value = profileSubtitleText.textContent
+}
+
+function addPopupEventHandlers(popupElement, submitHandler) {
+    const form = popupElement.querySelector('.form');
+    form.addEventListener('submit', evt => {
+        submitHandler(evt);
+        closePopup(popupElement);
+    });
+
+}
+
+//Закрытие popup редактирования профиля 
+closeButton.addEventListener('click', () => {
+    closePopup(popupEditProfile);
+});
+
+const settings = {
+    formSelector: '.form',
+    inputSelector: '.form__input',
+    submitButtonSelector: '.menu__submit',
+    activeButtonClass: 'form__button_active',
+    inputErrorClass: 'form__input_error',
+    errorClass: 'error-span_visible'
+}
