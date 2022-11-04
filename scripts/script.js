@@ -1,4 +1,5 @@
-class Card {
+import {popupImages, openPopup, popupImageOpenTitle, popupImg} from "./index.js" 
+export default class Card {
     constructor(title, image, templateSelector) {
         this._cardTitle = title
         this._cardImage = image
@@ -52,29 +53,3 @@ class Card {
         
     }
 }
-//Добавление новой карточки в DOM
-function handleAddCard() {
-    const card = new Card(mestoName.value, mestoLink.value, '.card-template')
-    const item = card.generateCard()
-    return item
-}
-//Добавление карточки на страницу 
-function createCard (){
-    const readyCard = handleAddCard ()
-    container.prepend(readyCard)
-    formAddCard.reset();
-}
-
-//Обработчик карточки
-formCardsElement.addEventListener('submit', (evt) => {
-    evt.preventDefault()
-    createCard()
-    closePopup(popupCards)
-})
-
-//Добавление карточек с массива
-initialCards.forEach((item) => {
-    const card = new Card(item.name, item.link, '.card-template')
-    const cardElement = card.generateCard()
-    container.prepend(cardElement)
-})

@@ -1,3 +1,5 @@
+import  Card  from "./script.js"
+import FormValidator from "./FormValidator.js";
 const page = document.querySelector('.page');
 const wrapper = page.querySelector('.wrapper');
 const buttonEditProfile = wrapper.querySelector('.profile__edit-button');
@@ -29,6 +31,9 @@ const closeImagePopupButton = document.querySelector('.image-container__close-ic
 const saveButton = document.querySelector ('.menu-cards__buttonCreate')
 const closeButton = document.querySelector('.menu__close-icon');
 
+export {popupImages, openPopup, popupImageOpenTitle, popupImg}
+
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -56,6 +61,33 @@ const initialCards = [
     }
 ];
 
+
+//Добавление новой карточки в DOM
+function handleAddCard() {
+    const card = new Card(mestoName.value, mestoLink.value, '.card-template')
+    const item = card.generateCard()
+    return item
+}
+//Добавление карточки на страницу 
+function createCard (){
+    const readyCard = handleAddCard ()
+    container.prepend(readyCard)
+    formAddCard.reset();
+}
+
+//Обработчик карточки
+formCardsElement.addEventListener('submit', (evt) => {
+    evt.preventDefault()
+    createCard()
+    closePopup(popupCards)
+})
+
+//Добавление карточек с массива
+initialCards.forEach((item) => {
+    const card = new Card(item.name, item.link, '.card-template')
+    const cardElement = card.generateCard()
+    container.prepend(cardElement)
+})
 
 
 //Закрытие модального окна 
