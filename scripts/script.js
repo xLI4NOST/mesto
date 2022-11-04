@@ -78,4 +78,3 @@ initialCards.forEach((item) => {
     const cardElement = card.generateCard()
     container.prepend(cardElement)
 })
-

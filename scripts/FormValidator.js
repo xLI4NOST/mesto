@@ -1,4 +1,3 @@
-
 class FormValidator {
     constructor(settings, form)
     {
@@ -15,9 +14,9 @@ class FormValidator {
     
 //вызов ошибки
 _updateInputValidation(input) {
-    const errorSpan = input.parentNode.querySelector(`#${input.id}-error`);
+    const errorSpan = document.querySelector(`#${input.id}-error`);
     errorSpan.textContent = input.validationMessage;
-    if(errorSpan.textContent !== "") {
+    if(!input.checkValidity) {
         input.classList.add(this._inputErrorClass);
         errorSpan.classList.add(this._errorClass);
     }
@@ -63,5 +62,3 @@ enableValidation() {
         this._setFormEventListeners();
 }
 }
-
-
