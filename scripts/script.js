@@ -1,10 +1,11 @@
 class Card {
-    constructor(title, image) {
-        this._cardTitle = title
-        this._cardImage = image
+    constructor(data, templateSelector) {
+        this._title = data.title
+        this._image = data.image
+        this._templateSelector = templateSelector
     }
     _getTemplate() {
-        const cardTemplate = document.querySelector('.card-template')
+        const cardTemplate = document.querySelector(this._templateSelector)
             .content
             .querySelector('.card')
             .cloneNode(true)
@@ -12,12 +13,10 @@ class Card {
     }
 
     generateCard() {
-        const cardTitle = document.querySelector('.card__title')
-        const cardImage = document.querySelector('.card__image')
         this._element = this._getTemplate()
-        this._element.querySelector('.card__image').src = this._cardImage
-        this._element.querySelector('.card__image').alt = this._cardTitle
-        this._element.querySelector('.card__title').textContent = this._cardTitle
+        this._element.querySelector('.card__image').src = this._image
+        this._element.querySelector('.card__image').alt = this._title
+        this._element.querySelector('.card__title').textContent = this._title
         this._setEventListiners();
         return this._element
     }
@@ -77,15 +76,10 @@ saveButton.addEventListener('click', (evt) => {
 
 //Добавление карточек с массива
 initialCards.forEach((item) => {
-    const card = new Card(item.name, item.link)
+    const card = new Card(item, '.card-template')
     const cardElement = card.generateCard()
     container.prepend(cardElement)
 })
-//обработчик маисва
-function handleLikeCard(event) {
-    const currentLike = event.target.closest('.card__button-like')
-    currentLike.classList.toggle('card__button-like_active')
-};
 
 //Открытие popup
 function openPopup(popupElem) {
