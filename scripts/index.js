@@ -34,6 +34,15 @@ const closeButton = document.querySelector('.menu__close-icon');
 export {popupImages, openPopup, popupImageOpenTitle, popupImg}
 
 
+const settings = {
+    formSelector: '.form',
+    inputSelector: '.form__input',
+    submitButtonSelector: '.menu__submit',
+    activeButtonClass: 'form__button_active',
+    inputErrorClass: 'form__input_error',
+    errorClass: 'error-span_visible'
+}
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -126,20 +135,21 @@ allPopUps.forEach((popupElem) => {
 buttonEditProfile.addEventListener('click', () => {
     openPopup(popupEditProfile);
     fillInFormInputs()
-    const formCards = new FormValidator(settings, formElement)
-    formCards.enableValidation(settings, formElement)
+  
 });
-
+const formProfile = new FormValidator(settings, formElement)
+formProfile.enableValidation(settings, formElement)
 //Открытие popupCards
 function handleOpenPopupCard (){
     openPopup(popupCards)
 }
 document.querySelector ('.profile__add-button')
 .addEventListener ('click', ()=>{
-    const formCards = new FormValidator(settings, formCardsElement)
-    formCards.enableValidation(settings, formCardsElement)
+    
 handleOpenPopupCard()
 })
+const formCards = new FormValidator(settings, formCardsElement)
+    formCards.enableValidation(settings, formCardsElement)
 cardCloseButton.addEventListener ('click', ()=>{
     closePopup(popupCards)
 })
@@ -169,11 +179,3 @@ closeButton.addEventListener('click', () => {
     closePopup(popupEditProfile);
 });
 
-const settings = {
-    formSelector: '.form',
-    inputSelector: '.form__input',
-    submitButtonSelector: '.menu__submit',
-    activeButtonClass: 'form__button_active',
-    inputErrorClass: 'form__input_error',
-    errorClass: 'error-span_visible'
-}
