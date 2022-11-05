@@ -1,7 +1,7 @@
 .image-container__close-icon {
-    position: relative;
+    position: absolute;
     top: 0;
-    left: 0;
+    right: -40px;
     cursor: pointer;
     width: 37px;
     height: 32px;
