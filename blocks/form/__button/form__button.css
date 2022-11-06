@@ -13,6 +13,7 @@
     background: #ffffff;
     border-radius: 2px;
     border: 1px solid #000000;
+    opacity: 0.2;
 }
 
 .menu__button:hover {
