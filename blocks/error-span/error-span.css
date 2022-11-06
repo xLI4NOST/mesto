@@ -10,7 +10,7 @@
     color: #FF0000;
 }
 
-@media screen and (max-width : 879px) {
+@media screen and (max-width:879px) {
     .error-span {
         display: block;
         position: absolute;
