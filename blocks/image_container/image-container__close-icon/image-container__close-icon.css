@@ -17,11 +17,3 @@
 .image-container__close-icon:hover {
     opacity: 0.6;
 }
-
-@media screen and (max-width: 396px) {
-    .image-container__close-icon {
-        width: 20px;
-        height: 20px;
-        background-size: 20px 20px;
-    }
-}
