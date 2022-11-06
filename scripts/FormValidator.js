@@ -1,5 +1,5 @@
-
-   export default class FormValidator {
+ 
+ export default class FormValidator {
     constructor(settings, form)
     {
         this._formSelector = settings.formSelector;
@@ -20,18 +20,17 @@ _updateInputValidation(input) {
     if(!input.checkValidity) {
         input.classList.add(this._inputErrorClass);
         errorSpan.classList.add(this._errorClass);
+    } else {
+        this._closeError(input)
     }
 }
 
 //спарятать ошибку 
 _closeError (input){
-    const errorSpan = input.parentNode.querySelector(`#${input.id}-error`);
-    errorSpan.textContent = input.validationMessage;
-   if (input.checkValidity){
         input.classList.remove(this._inputErrorClass);
-        errorSpan.classList.remove(this._errorClass);
-    }
 }
+
+
 
 //Правила для кнопки сабмита
 _updateSubmitButton() {
@@ -54,7 +53,6 @@ _setFormEventListeners() {
         input.addEventListener('input', () => {
             this._updateSubmitButton();
             this._updateInputValidation(input);
-            this._closeError(input)
         });
     }
 }

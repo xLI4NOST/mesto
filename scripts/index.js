@@ -1,4 +1,4 @@
-import  Card  from "./script.js"
+import Card from "./card.js"
 import FormValidator from "./FormValidator.js";
 const page = document.querySelector('.page');
 const wrapper = page.querySelector('.wrapper');
@@ -19,8 +19,8 @@ const formButton = document.querySelector('.card_create');
 const mestoName = document.querySelector('.form-cards__input_type_text');
 const mestoLink = document.querySelector('.form-cards__input_type_link');
 const formCardsElement = document.querySelector('.form-cards');
-const menuTitle = document.querySelector ('.menu__title')
-const menuCardTitle = document.querySelector ('.menu__title-cards')
+const menuTitle = document.querySelector('.menu__title')
+const menuCardTitle = document.querySelector('.menu__title-cards')
 const popupImg = document.querySelector('.popup_type_image');
 const popupImages = popupImg.querySelector('.image-container__open-image');
 const popupImageOpenTitle = popupImg.querySelector('.image-container__title');
@@ -28,10 +28,10 @@ const esc = 27;
 const formAddCard = popupCards.querySelector('.form');
 const allPopUps = document.querySelectorAll('.popup');
 const closeImagePopupButton = document.querySelector('.image-container__close-icon')
-const saveButton = document.querySelector ('.menu-cards__buttonCreate')
+const saveButton = document.querySelector('.menu-cards__buttonCreate')
 const closeButton = document.querySelector('.menu__close-icon');
 
-export {popupImages, openPopup, popupImageOpenTitle, popupImg}
+export { popupImages, openPopup, popupImageOpenTitle, popupImg }
 
 
 const settings = {
@@ -70,16 +70,18 @@ const initialCards = [
     }
 ];
 
+function getInfoCard (){
 
+}
 //Добавление новой карточки в DOM
-function handleAddCard() {
-    const card = new Card(mestoName.value, mestoLink.value, '.card-template')
+function handleAddCard(name, link, template) {
+    const card = new Card(name, link, template)
     const item = card.generateCard()
     return item
 }
 //Добавление карточки на страницу 
-function createCard (){
-    const readyCard = handleAddCard ()
+function createCard() {
+    const readyCard = handleAddCard(mestoName.value, mestoLink.value, '.card-template')
     container.prepend(readyCard)
     formAddCard.reset();
 }
@@ -87,14 +89,14 @@ function createCard (){
 //Обработчик карточки
 formCardsElement.addEventListener('submit', (evt) => {
     evt.preventDefault()
-    createCard()
+    const newCardData = {name: mestoName.value, link: mestoLink.value} 
+    const cardElement = createCard(newCardData)
     closePopup(popupCards)
 })
 
 //Добавление карточек с массива
 initialCards.forEach((item) => {
-    const card = new Card(item.name, item.link, '.card-template')
-    const cardElement = card.generateCard()
+const cardElement = handleAddCard(item.name, item.link, '.card-template')
     container.prepend(cardElement)
 })
 
@@ -135,22 +137,21 @@ allPopUps.forEach((popupElem) => {
 buttonEditProfile.addEventListener('click', () => {
     openPopup(popupEditProfile);
     fillInFormInputs()
-  
+
 });
 const formProfile = new FormValidator(settings, formElement)
-formProfile.enableValidation(settings, formElement)
+formProfile.enableValidation()
 //Открытие popupCards
-function handleOpenPopupCard (){
+function handleOpenPopupCard() {
     openPopup(popupCards)
 }
-document.querySelector ('.profile__add-button')
-.addEventListener ('click', ()=>{
-    
-handleOpenPopupCard()
-})
+document.querySelector('.profile__add-button')
+    .addEventListener('click', () => {
+        handleOpenPopupCard()
+    })
 const formCards = new FormValidator(settings, formCardsElement)
-    formCards.enableValidation(settings, formCardsElement)
-cardCloseButton.addEventListener ('click', ()=>{
+formCards.enableValidation(settings, formCardsElement)
+cardCloseButton.addEventListener('click', () => {
     closePopup(popupCards)
 })
 
