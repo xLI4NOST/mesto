@@ -6,19 +6,23 @@ export default class Popup {
     open(){
         this._popupSelector.classList.remove('animation-close');
         this._popupSelector.classList.add('popup_active');
+        this.setEventListiners()
     }
     close(){
         setTimeout(() => this._popupSelector.classList.remove('popup_active'), 500);
         this._popupSelector.classList.add('animation-close');
     }
 
-    _handleEscClose(){
-
+    _handleEscClose(e){
+            if (e.keyCode === 27) {
+                this.close()
+            }
     }
 
     setEventListiners(){
-        this._closeIcon.addEventListener('click', ()=>{
-            this.close()
+        document.addEventListener ('keydown', (e)=>{
+            this._handleEscClose(e)
         })
+
     }
 }

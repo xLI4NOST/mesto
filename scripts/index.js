@@ -33,7 +33,7 @@ const closeImagePopupButton = document.querySelector('.image-container__close-ic
 const saveButton = document.querySelector('.menu-cards__buttonCreate')
 const closeButton = document.querySelector('.menu__close-icon');
 
-export { popupImages, openPopup, popupImageOpenTitle, popupImg }
+export { popupImages, popupImageOpenTitle, popupImg }
 
 
 const settings = {
@@ -116,24 +116,7 @@ closeImagePopupButton.addEventListener('click', () => {
     closePopup.close()
 });
 
-//Открытие popup
-function openPopup(popupElem) {
-    popupElem.classList.remove('animation-close');
-    popupElem.classList.add('popup_active');
-    document.addEventListener('keydown', closeEsc)
-};
-function closeEsc(e) {
-    if (e.keyCode === esc) {
-        const popupElem = document.querySelector('.popup_active');
-        closePopup(popupElem);
-    }
-}
-//Закрытие popup
-function closePopup(popupElem) {
-    setTimeout(() => popupElem.classList.remove('popup_active'), 500);
-    popupElem.classList.add('animation-close');
-    document.removeEventListener('keydown', closeEsc);
-};
+
 //Закрытие popup по пустому месту
 allPopUps.forEach((popupElem) => {
     popupElem.addEventListener('click', (evt) => {
