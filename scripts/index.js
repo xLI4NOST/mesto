@@ -118,13 +118,13 @@ closeImagePopupButton.addEventListener('click', () => {
 
 
 //Закрытие popup по пустому месту
-allPopUps.forEach((popupElem) => {
-    popupElem.addEventListener('click', (evt) => {
-        if (evt.currentTarget === evt.target) {
-            closePopup(popupElem);
-        }
-    })
-});
+// allPopUps.forEach((popupElem) => {
+//     popupElem.addEventListener('click', (evt) => {
+//         if (evt.currentTarget === evt.target) {
+//             closePopup(popupElem);
+//         }
+//     })
+// });
 
 // Форма редактирования профиля
 buttonEditProfile.addEventListener('click', () => {
