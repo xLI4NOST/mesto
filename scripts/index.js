@@ -106,13 +106,14 @@ formCardsElement.addEventListener('submit', (evt) => {
     evt.preventDefault()
     const newCardData = {name: mestoName.value, link: mestoLink.value} 
     const cardElement = createCard(newCardData)
-    const close= new Popup (popupCards)
-    close.close()
+    const closePopup= new Popup (popupCards)
+    closePopup.close()
 })
 
 //Закрытие модального окна 
 closeImagePopupButton.addEventListener('click', () => {
-    closePopup(popupImg)
+    const closePopup= new Popup (popupImg)
+    closePopup.close()
 });
 
 //Открытие popup
@@ -144,24 +145,24 @@ allPopUps.forEach((popupElem) => {
 
 // Форма редактирования профиля
 buttonEditProfile.addEventListener('click', () => {
-    openPopup(popupEditProfile);
+    const openPopup= new Popup (popupEditProfile)
+    openPopup.open();
     fillInFormInputs()
 
 });
 const formProfile = new FormValidator(settings, formElement)
 formProfile.enableValidation()
-//Открытие popupCards
-function handleOpenPopupCard() {
-    openPopup(popupCards)
-}
+
 document.querySelector('.profile__add-button')
     .addEventListener('click', () => {
-        handleOpenPopupCard()
+        const openPopup= new Popup (popupCards)
+        openPopup.open();
     })
 const formCards = new FormValidator(settings, formCardsElement)
 formCards.enableValidation(settings, formCardsElement)
 cardCloseButton.addEventListener('click', () => {
-    closePopup(popupCards)
+    const closePopup= new Popup (popupCards)
+    closePopup.close()
 })
 
 addPopupEventHandlers(popupEditProfile, (evt) => {
@@ -179,13 +180,15 @@ function addPopupEventHandlers(popupElement, submitHandler) {
     const form = popupElement.querySelector('.form');
     form.addEventListener('submit', evt => {
         submitHandler(evt);
-        closePopup(popupElement);
+        const closePopup= new Popup (popupEditProfile)
+        closePopup.close();
     });
 
 }
 
 //Закрытие popup редактирования профиля 
 closeButton.addEventListener('click', () => {
-    closePopup(popupEditProfile);
+    const closePopup= new Popup (popupEditProfile)
+    closePopup.close();
 });
 
