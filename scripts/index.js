@@ -1,5 +1,6 @@
 import Card from "./card.js"
 import FormValidator from "./FormValidator.js";
+import Section from "./section.js";
 const page = document.querySelector('.page');
 const wrapper = page.querySelector('.wrapper');
 const buttonEditProfile = wrapper.querySelector('.profile__edit-button');
@@ -70,9 +71,23 @@ const initialCards = [
     }
 ];
 
-function getInfoCard (){
-
+const listItem = new Section ({
+    items: initialCards, 
+    renderer: (item)=>{
+    const addCard = new Card (item.name, item.link, 'card-template')
+    const newCard = addCard.generateCard()
+        listItem.addItem(newCard)
 }
+},  container)
+
+listItem.renderer()
+
+
+// initialCards.forEach((item) => {
+//     const cardElement = handleAddCard(item.name, item.link, '.card-template')
+//         container.prepend(cardElement)
+//     })
+
 //Добавление новой карточки в DOM
 function handleAddCard(name, link, template) {
     const card = new Card(name, link, template)
@@ -93,13 +108,6 @@ formCardsElement.addEventListener('submit', (evt) => {
     const cardElement = createCard(newCardData)
     closePopup(popupCards)
 })
-
-//Добавление карточек с массива
-initialCards.forEach((item) => {
-const cardElement = handleAddCard(item.name, item.link, '.card-template')
-    container.prepend(cardElement)
-})
-
 
 //Закрытие модального окна 
 closeImagePopupButton.addEventListener('click', () => {
