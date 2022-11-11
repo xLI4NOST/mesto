@@ -1,6 +1,7 @@
 import Card from "./card.js"
 import FormValidator from "./FormValidator.js";
 import Section from "./section.js";
+import Popup from "./popup.js";
 const page = document.querySelector('.page');
 const wrapper = page.querySelector('.wrapper');
 const buttonEditProfile = wrapper.querySelector('.profile__edit-button');
@@ -83,12 +84,6 @@ const listItem = new Section ({
 
 listItem.renderer()
 
-
-// initialCards.forEach((item) => {
-//     const cardElement = handleAddCard(item.name, item.link, '.card-template')
-//         container.prepend(cardElement)
-//     })
-
 //Добавление новой карточки в DOM
 function handleAddCard(data, template) {
     const card = new Card(data, template)
@@ -102,7 +97,7 @@ function createCard() {
         link: mestoLink.value
     }
     const readyCard = handleAddCard(data, '.card-template')
-    container.prepend(readyCard)
+    listItem.addItem(readyCard)
     formAddCard.reset();
 }
 
@@ -111,7 +106,8 @@ formCardsElement.addEventListener('submit', (evt) => {
     evt.preventDefault()
     const newCardData = {name: mestoName.value, link: mestoLink.value} 
     const cardElement = createCard(newCardData)
-    closePopup(popupCards)
+    const close= new Popup (popupCards)
+    close.close()
 })
 
 //Закрытие модального окна 
