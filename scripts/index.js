@@ -73,10 +73,11 @@ const initialCards = [
 
 const listItem = new Section ({
     items: initialCards, 
-    renderer: (item)=>{
-    const addCard = new Card (item.name, item.link, 'card-template')
+    renderer: (data)=>{
+    const addCard = new Card (data, '.card-template')
     const newCard = addCard.generateCard()
         listItem.addItem(newCard)
+
 }
 },  container)
 
@@ -89,14 +90,18 @@ listItem.renderer()
 //     })
 
 //Добавление новой карточки в DOM
-function handleAddCard(name, link, template) {
-    const card = new Card(name, link, template)
+function handleAddCard(data, template) {
+    const card = new Card(data, template)
     const item = card.generateCard()
     return item
 }
 //Добавление карточки на страницу 
 function createCard() {
-    const readyCard = handleAddCard(mestoName.value, mestoLink.value, '.card-template')
+    const data = {
+        name: mestoName.value,
+        link: mestoLink.value
+    }
+    const readyCard = handleAddCard(data, '.card-template')
     container.prepend(readyCard)
     formAddCard.reset();
 }
