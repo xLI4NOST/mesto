@@ -2,6 +2,7 @@ import Card from "./card.js"
 import FormValidator from "./FormValidator.js";
 import Section from "./section.js";
 import Popup from "./popup.js";
+import PopupWithImage from "./PopupWithImage.js";
 const page = document.querySelector('.page');
 const wrapper = page.querySelector('.wrapper');
 const buttonEditProfile = wrapper.querySelector('.profile__edit-button');
@@ -24,16 +25,15 @@ const formCardsElement = document.querySelector('.form-cards');
 const menuTitle = document.querySelector('.menu__title')
 const menuCardTitle = document.querySelector('.menu__title-cards')
 const popupImg = document.querySelector('.popup_type_image');
-const popupImages = popupImg.querySelector('.image-container__open-image');
-const popupImageOpenTitle = popupImg.querySelector('.image-container__title');
 const esc = 27;
 const formAddCard = popupCards.querySelector('.form');
 const allPopUps = document.querySelectorAll('.popup');
 const closeImagePopupButton = document.querySelector('.image-container__close-icon')
 const saveButton = document.querySelector('.menu-cards__buttonCreate')
 const closeButton = document.querySelector('.menu__close-icon');
+const cardImage = document.querySelector ('.card__image')
 
-export { popupImages, popupImageOpenTitle, popupImg }
+
 
 
 const settings = {
@@ -75,7 +75,7 @@ const initialCards = [
 const listItem = new Section ({
     items: initialCards, 
     renderer: (data)=>{
-    const addCard = new Card (data, '.card-template')
+    const addCard = new Card (data, '.card-template', handleCardClick)
     const newCard = addCard.generateCard()
         listItem.addItem(newCard)
 
@@ -86,7 +86,7 @@ listItem.renderer()
 
 //Добавление новой карточки в DOM
 function handleAddCard(data, template) {
-    const card = new Card(data, template)
+    const card = new Card(data, template, handleCardClick)
     const item = card.generateCard()
     return item
 }
@@ -109,22 +109,17 @@ formCardsElement.addEventListener('submit', (evt) => {
     const closePopup= new Popup (popupCards)
     closePopup.close()
 })
-
+const openImage = new PopupWithImage (popupImg) 
+//Открытие картинки 
+   function handleCardClick(title, image) {
+       openImage.open(title, image)
+    }
 //Закрытие модального окна 
 closeImagePopupButton.addEventListener('click', () => {
     const closePopup= new Popup (popupImg)
     closePopup.close()
 });
 
-
-//Закрытие popup по пустому месту
-// allPopUps.forEach((popupElem) => {
-//     popupElem.addEventListener('click', (evt) => {
-//         if (evt.currentTarget === evt.target) {
-//             closePopup(popupElem);
-//         }
-//     })
-// });
 
 // Форма редактирования профиля
 buttonEditProfile.addEventListener('click', () => {
