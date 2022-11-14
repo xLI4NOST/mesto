@@ -1,8 +1,9 @@
-import Card from "./card.js"
+import Card from "./card.js";
 import FormValidator from "./FormValidator.js";
 import Section from "./section.js";
 import Popup from "./popup.js";
 import PopupWithImage from "./PopupWithImage.js";
+import UserInfo from "./UserInfo.js"
 const page = document.querySelector('.page');
 const wrapper = page.querySelector('.wrapper');
 const buttonEditProfile = wrapper.querySelector('.profile__edit-button');
@@ -23,7 +24,7 @@ const popupImg = document.querySelector('.popup_type_image');
 const formAddCard = popupCards.querySelector('.form');
 const closeImagePopupButton = document.querySelector('.image-container__close-icon')
 const closeButton = document.querySelector('.menu__close-icon');
-
+export {profileNameText, profileSubtitleText}
 
 const settings = {
     formSelector: '.form',
@@ -134,8 +135,8 @@ cardCloseButton.addEventListener('click', () => {
 
 addPopupEventHandlers(popupEditProfile, (evt) => {
     evt.preventDefault();
-    profileNameText.textContent = textName.value;
-    profileSubtitleText.textContent = textSubtitle.value;
+ const user = new UserInfo (name, job)
+ user.setUserInfo (textName, textSubtitle)
 });
 
 function fillInFormInputs() {
