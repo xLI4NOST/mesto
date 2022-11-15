@@ -1,19 +1,17 @@
-import {profileNameText, profileSubtitleText} from "./index.js"
 export default class UserInfo {
-    constructor ({profileName, profileJob}){
-        this._profileName = profileNameText
-        this._profileJob = profileSubtitleText
+    constructor({profileName, profileJob}) {
+        this._profileName = profileName;
+        this._profileJob = profileJob;
     }
-    getUserInfo(){
-        const userObject ={
+    getUserInfo() {
+        const userObject = {
             name: this._profileName.textContent,
             job: this._profileJob.textContent
-        }
-        return userObject
-        
+        };
+        return userObject;
     }
-    setUserInfo ({name, job}){
-    this._name.textContent = name
-    this._job.textContent = job        
+    setUserInfo({ name, job }) {
+        this._profileName.textContent = name;
+        this._profileJob.textContent = job;
     }
 }
