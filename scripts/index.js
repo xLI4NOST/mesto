@@ -5,6 +5,7 @@ import Popup from "./popup.js";
 import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js"
+import '../pages/index.css'
 const page = document.querySelector('.page');
 const wrapper = page.querySelector('.wrapper');
 const buttonEditProfile = wrapper.querySelector('.profile__edit-button');
