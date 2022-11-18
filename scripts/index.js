@@ -6,25 +6,25 @@ import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js"
 import '../pages/index.css'
-const page = document.querySelector('.page');
-const wrapper = page.querySelector('.wrapper');
-const buttonEditProfile = wrapper.querySelector('.profile__edit-button');
-const popupEditProfile = page.querySelector('.popup');
-const menu = document.querySelector('.menu');
-const textName = document.querySelector('.form__input_type_name');
-const textSubtitle = document.querySelector('.form__input_type_job');
-const profileName = document.querySelector('.profile__name');
-const profileJob = document.querySelector('.profile__subtitle');
-const formElement = popupEditProfile.querySelector('.form');
-const popupCards = document.querySelector('.popup_type_cards');
-const cardCloseButton = document.querySelector('.menu__card-close');
-const container = document.querySelector('.elements');
-const mestoName = document.querySelector('.form-cards__input_type_text');
-const mestoLink = document.querySelector('.form-cards__input_type_link');
-const formCardsElement = document.querySelector('.form-cards');
-const formAddCard = popupCards.querySelector('.form');
-const closeImagePopupButton = document.querySelector('.image-container__close-icon')
-const closeButton = document.querySelector('.menu__close-icon');
+import {page,
+    wrapper,
+    buttonEditProfile,
+    popupEditProfile,
+    menu,
+    textName,
+    textSubtitle,
+    profileName,
+    profileJob,
+    formElement,
+    popupCards,
+    cardCloseButton,
+    container,
+    mestoName,
+    mestoLink,
+    formCardsElement,
+    formAddCard,
+    ImageclosePopupButton,
+    closeButton,} from "./utils.js"
 
 const popupImg = new PopupWithImage(document.querySelector('.popup_type_image'));
 popupImg.setEventListiners();
@@ -119,7 +119,7 @@ function handleCardClick(title, image) {
 }
 
 //Закрытие модального окна 
-closeImagePopupButton.addEventListener('click', () => {
+ImageclosePopupButton.addEventListener('click', () => {
     popupImg.close()
 });
 
