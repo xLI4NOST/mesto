@@ -26,11 +26,11 @@ export default class Card {
         return this._element
     }
 
-    _handleDeleteCard (event){
+    _handleDeleteCard (){
         this._element.remove()
         this._element = null
     }
-    _handleLikeCard (evt){
+    _handleLikeCard (){
         this._buttonLike.classList.toggle('card__button-like_active'); 
     }
  

@@ -1,10 +1,10 @@
-import Card from "./card.js";
-import FormValidator from "./FormValidator.js";
-import Section from "./section.js";
-import Popup from "./popup.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
-import UserInfo from "./UserInfo.js"
+import Card from "../src/components/Сard.js";
+import FormValidator from "../src/components/FormValidator.js";
+import Section from "../src/components/Section.js";
+import Popup from "../src/components/Popup.js";
+import PopupWithImage from "../src/components/PopupWithImage.js";
+import PopupWithForm from "../src/components/PopupWithForm.js";
+import UserInfo from "../src/components/UserInfo.js"
 import '../pages/index.css'
 import {
     page,
@@ -28,11 +28,10 @@ import {
     closeButton,
     settings,
     initialCards
-} from "./utils.js"
+} from "../src/components/Utils.js"
 
 const popupImg = new PopupWithImage(document.querySelector('.popup_type_image'));
 popupImg.setEventListiners();
-
 const userInfo = new UserInfo({ profileName, profileJob });
 const popupProfile = new PopupWithForm(popupEditProfile, function (evt, values) {
     userInfo.setUserInfo(values);
@@ -40,16 +39,15 @@ const popupProfile = new PopupWithForm(popupEditProfile, function (evt, values) 
 });
 popupProfile.setEventListiners();
 
-// popupImg.open('Image title', 'https://img');
 const listItem = new Section({
     items: initialCards,
-    renderer: (data) => {
+    renderItems: (data) => {
         const newCard = handleAddCard(data, '.card-template' )
         listItem.addItem(newCard)
     }
 }, container)
 
-listItem.renderer()
+listItem.renderItems()
 
 //Добавление новой карточки в DOM
 function handleAddCard(data, template) {
@@ -74,6 +72,7 @@ formCardsElement.addEventListener('submit', (evt) => {
     const cardElement = createCard(newCardData)
     const closePopup = new PopupWithForm(popupCards, formCardsElement)
     closePopup.close()
+    closePopup._handleEscClose()
 })
 
 //Открытие картинки 
