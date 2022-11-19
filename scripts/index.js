@@ -6,7 +6,8 @@ import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js"
 import '../pages/index.css'
-import {page,
+import {
+    page,
     wrapper,
     buttonEditProfile,
     popupEditProfile,
@@ -24,64 +25,27 @@ import {page,
     formCardsElement,
     formAddCard,
     ImageclosePopupButton,
-    closeButton,} from "./utils.js"
+    closeButton,
+    settings,
+    initialCards
+} from "./utils.js"
 
 const popupImg = new PopupWithImage(document.querySelector('.popup_type_image'));
 popupImg.setEventListiners();
 
-const userInfo = new UserInfo({profileName, profileJob});
-const popupProfile = new PopupWithForm(popupEditProfile, function(evt, values) {
-    evt.preventDefault();
+const userInfo = new UserInfo({ profileName, profileJob });
+const popupProfile = new PopupWithForm(popupEditProfile, function (evt, values) {
     userInfo.setUserInfo(values);
     this.close();
 });
 popupProfile.setEventListiners();
 
 // popupImg.open('Image title', 'https://img');
-
-const settings = {
-    formSelector: '.form',
-    inputSelector: '.form__input',
-    submitButtonSelector: '.menu__submit',
-    activeButtonClass: 'form__button_active',
-    inputErrorClass: 'form__input_error',
-    errorClass: 'error-span_visible'
-};
-
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
 const listItem = new Section({
     items: initialCards,
     renderer: (data) => {
-        const addCard = new Card(data, '.card-template', handleCardClick)
-        const newCard = addCard.generateCard()
+        const newCard = handleAddCard(data, '.card-template' )
         listItem.addItem(newCard)
-
     }
 }, container)
 
@@ -93,15 +57,14 @@ function handleAddCard(data, template) {
     const item = card.generateCard()
     return item
 }
+
 //Добавление карточки на страницу 
 function createCard() {
-    const data = {
-        name: mestoName.value,
-        link: mestoLink.value
-    }
-    const readyCard = handleAddCard(data, '.card-template')
+    const data = new PopupWithForm (popupCards, formCardsElement)
+    const values = data._getInputValues()
+    console.log(values);
+    const readyCard = handleAddCard(values, '.card-template')
     listItem.addItem(readyCard)
-    formAddCard.reset();
 }
 
 //Обработчик карточки
@@ -109,7 +72,7 @@ formCardsElement.addEventListener('submit', (evt) => {
     evt.preventDefault()
     const newCardData = { name: mestoName.value, link: mestoLink.value }
     const cardElement = createCard(newCardData)
-    const closePopup = new Popup(popupCards)
+    const closePopup = new PopupWithForm(popupCards, formCardsElement)
     closePopup.close()
 })
 
