@@ -30,14 +30,24 @@ import {
     initialCards
 } from "../src/components/Utils.js"
 
+
+
+
+//Объявление попапов
+
+//popupCard
+const popupCard = new PopupWithForm(popupCards, formCardsElement)
+//popupImg
 const popupImg = new PopupWithImage(document.querySelector('.popup_type_image'));
 popupImg.setEventListiners();
+//popupProfile
 const userInfo = new UserInfo({ profileName, profileJob });
 const popupProfile = new PopupWithForm(popupEditProfile, function (evt, values) {
     userInfo.setUserInfo(values);
     this.close();
 });
 popupProfile.setEventListiners();
+///////
 
 const listItem = new Section({
     items: initialCards,
@@ -48,6 +58,12 @@ const listItem = new Section({
 }, container)
 
 listItem.renderItems()
+//Открыть popupCards
+const values = popupCard._getInputValues()
+document.querySelector('.profile__add-button')
+    .addEventListener('click', () => {
+        popupCard.open(values)
+    })
 
 //Добавление новой карточки в DOM
 function handleAddCard(data, template) {
@@ -58,9 +74,7 @@ function handleAddCard(data, template) {
 
 //Добавление карточки на страницу 
 function createCard() {
-    const data = new PopupWithForm (popupCards, formCardsElement)
-    const values = data._getInputValues()
-    console.log(values);
+    const values = popupCard._getInputValues()
     const readyCard = handleAddCard(values, '.card-template')
     listItem.addItem(readyCard)
 }
@@ -70,9 +84,7 @@ formCardsElement.addEventListener('submit', (evt) => {
     evt.preventDefault()
     const newCardData = { name: mestoName.value, link: mestoLink.value }
     const cardElement = createCard(newCardData)
-    const closePopup = new PopupWithForm(popupCards, formCardsElement)
-    closePopup.close()
-    closePopup._handleEscClose()
+    popupCard.close()
 })
 
 //Открытие картинки 
@@ -93,21 +105,16 @@ buttonEditProfile.addEventListener('click', () => {
 const formProfile = new FormValidator(settings, formElement)
 formProfile.enableValidation()
 
-document.querySelector('.profile__add-button')
-    .addEventListener('click', () => {
-        const openPopup = new Popup(popupCards)
-        openPopup.open();
-    })
+
 const formCards = new FormValidator(settings, formCardsElement)
 formCards.enableValidation(settings, formCardsElement)
 cardCloseButton.addEventListener('click', () => {
-    const closePopup = new Popup(popupCards)
+    const closePopup = new PopupWithForm(popupCards, formCardsElement)
     closePopup.close()
 })
 
 //Закрытие popup редактирования профиля 
 closeButton.addEventListener('click', () => {
-    const closePopup = new Popup(popupEditProfile)
-    closePopup.close();
+    popupProfile.close()
 });
 
