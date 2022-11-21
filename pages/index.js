@@ -28,7 +28,7 @@ import {
     closeButton,
     settings,
     initialCards
-} from "../src/components/src/components.js"
+} from "../src/utils/constants.js"
 
 
 
