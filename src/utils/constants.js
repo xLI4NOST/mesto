@@ -17,6 +17,7 @@ export const formCardsElement = document.querySelector('.form-cards');
 export const formAddCard = popupCards.querySelector('.form');
 export const ImageclosePopupButton = document.querySelector('.image-container__close-icon')
 export const closeButton = document.querySelector('.menu__close-icon');
+export const avatarForm = document.querySelector ('.form-avatar');
 
 export const settings = {
     formSelector: '.form',

@@ -27,7 +27,8 @@ import {
     ImageclosePopupButton,
     closeButton,
     settings,
-    initialCards
+    initialCards,
+    avatarForm
 } from "../src/utils/constants.js"
 
 
@@ -51,6 +52,9 @@ const popupProfile = new PopupWithForm(popupEditProfile, function (values) {
     this.close();
 });
 popupProfile.setEventListiners();
+// popupAvatar//
+const popupAvatar = new PopupWithForm (document.querySelector ('.popup_type_avatar'), avatarForm)
+popupAvatar.setEventListiners()
 ///////
 
 const listItem = new Section({
@@ -110,4 +114,13 @@ cardCloseButton.addEventListener('click', () => {
 closeButton.addEventListener('click', () => {
     popupProfile.close()
 });
+// Открытие popupAvatar
+document.querySelector ('.profile__avatar-edit-button').addEventListener('click', ()=>{
+    popupAvatar.open()
+})
+
+document.querySelector('.form-avatar__close-icon').addEventListener ('click', ()=>{
+    popupAvatar.close()
+})
+
 
