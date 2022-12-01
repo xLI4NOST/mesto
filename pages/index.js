@@ -28,7 +28,8 @@ import {
     closeButton,
     settings,
     initialCards,
-    avatarForm
+    avatarForm,
+    profileImg,
 } from "../src/utils/constants.js"
 
 
@@ -123,4 +124,8 @@ document.querySelector('.form-avatar__close-icon').addEventListener ('click', ()
     popupAvatar.close()
 })
 
+document.querySelector ('.menu-avatar__button').addEventListener ('click', (evt)=>{
+evt.preventDefault()
+profileImg.src = link
+})
 
