@@ -8,10 +8,15 @@
 @import url(../blocks/popup/popup.css);
 /* popup-cards */
 @import url(../blocks/popup/_type_cards/popup_type_cards.css);
+/* popup-avatar */
+@import url(../blocks/popup/_type_avatar/popup_type_avatar.css);
 /* form-cards */
 @import url(../blocks/form-cards/form-cards.css);
 @import url(../blocks/form-cards/__input/form-cards__input.css);
 @import url(../blocks/form-cards/__button/form-cards__button.css);
+/* form-avatar */
+@import url(../blocks/form-avatar/form-avatar.css);
+@import url(../blocks/form-avatar/__form-avatar__input/form-avatar__input.css);
 /* popup-image */
 @import url(../blocks/popup/_type_image/popup_type_image.css);
 @import url(../blocks/popup/_type_image/__open-image/popup_type_image__open-image.css);
@@ -39,11 +44,14 @@
 @import url(../blocks/menu/__options/menu__options.css);
 @import url(../blocks/menu/__close-icon/menu__close-icon.css);
 @import url(../blocks/popup/_type_image/__close-icon/popup_type_image__close-icon.css);
+@import url(../blocks/menu/__title-avatar/menu__title-avatar.css);
 /* header */
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 /* profile */
 @import url(../blocks/profile/profile.css);
+@import url(../blocks/profile//__avarar-block/profile__avatar-block.css);
+@import url(../blocks/profile/__avatar-edit-button/avatar-edit-button.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__heading/profile__heading.css);
