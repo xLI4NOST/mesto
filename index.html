@@ -92,9 +92,9 @@
             <h2 class="menu__title-avatar">Обновить аватар</h2>
             <form class="form form-avatar">
                 <button class="menu__close-icon form-avatar__close-icon" type="button"></button>
-                <input type="url" name="link" required novalidate minlength="2" placeholder="Ссылка на картинку" class="form__input form-avatar__input">
-                <span id= "link-error" class="error-span"></span>
-                <button  class="menu-avatar__button menu__button">Сохранить</button>
+                <input id ="avarat-link" type="url" name="link" required novalidate minlength="2" placeholder="Ссылка на картинку" class="form__input form-avatar__input">
+                <span id= "avarat-link-error" class="error-span menu-avatar__error-span"></span>
+                <button disabled type="submit" class="menu-avatar__button menu__button menu__submit">Сохранить</button>
             </form>
         </div>
     </div>
