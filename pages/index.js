@@ -32,6 +32,7 @@ import {
     avatarForm,
     profileImg,
     avatarInput,
+    avatar,
 } from "../src/utils/constants.js"
 
 //API
@@ -59,6 +60,13 @@ api.getInitialCards()
 })
 
 
+    api.getUserData()
+    .then( (response)=>{
+        console.log(response);
+        const userInfo = new UserInfo({ profileName, profileJob, avatar });
+        userInfo.setUserInfo(response);
+    })
+
 
 
 //Объявление попапов
@@ -72,14 +80,14 @@ popupCard.setEventListiners()
 //popupImg
 const popupImg = new PopupWithImage(document.querySelector('.popup_type_image'));
 popupImg.setEventListiners();
-//popupProfile
+popupProfile
 const userInfo = new UserInfo({ profileName, profileJob });
 const popupProfile = new PopupWithForm(popupEditProfile, function (values) {
     userInfo.setUserInfo(values);
     this.close();
 });
 popupProfile.setEventListiners();
-// popupAvatar//
+popupAvatar//
 const popupAvatar = new PopupWithForm (document.querySelector ('.popup_type_avatar'), avatarForm)
 popupAvatar.setEventListiners()
 ///////

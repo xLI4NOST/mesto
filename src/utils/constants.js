@@ -20,6 +20,7 @@ export const closeButton = document.querySelector('.menu__close-icon');
 export const avatarForm = document.querySelector ('.form-avatar');
 export const profileImg = document.querySelector('.profile__avatar')
 export const avatarInput = document.querySelector('.form-avatar__input')
+export const avatar = document.querySelector('.profile__avatar')
 
 export const settings = {
     formSelector: '.form',

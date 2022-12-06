@@ -3,7 +3,7 @@ export default class Api {
         this.options = options
     }
     getUserData (){
-        return fetch ('GET https://nomoreparties.co/v1/cohort-54/users/me',{
+        return fetch ('https://nomoreparties.co/v1/cohort-54/users/me',{
             headers:{
                 authorization: '33d68f8a-3b24-4840-804d-6b0ee1010dc9'
             }
