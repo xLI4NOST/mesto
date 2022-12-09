@@ -1,4 +1,3 @@
-import { mestoLink, mestoName, } from "../utils/constants";
 export default class Api {
   constructor(options) {
     this.options = options
@@ -70,5 +69,21 @@ export default class Api {
         return res.json()
       }
     })
+  }
+  getLikeInfo(){
+    return fetch('https://mesto.nomoreparties.co/v1/cohort-54/cards', {
+      method: 'GET',
+      headers: {
+        authorization: '33d68f8a-3b24-4840-804d-6b0ee1010dc9'
+      }
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+
+
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   }
 }
