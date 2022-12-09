@@ -42,8 +42,8 @@ export default class Api {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name: 'Marie Skłodowska',
-        about: 'Physicist and Chemist'
+        name: `${name}`,
+        about: `${about}`
       })
     })
       .then(res => {

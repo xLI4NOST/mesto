@@ -65,11 +65,8 @@ api.getInitialCards()
         avatar.src = response.avatar
     })
 
-    api.changeUserInfo()
-    .then((response)=>{
-        response.name = textName.value
-        response.about = textSubtitle.value
-    })
+  
+  
 
   
 
@@ -89,7 +86,7 @@ popupImg.setEventListiners();
 popupProfile
 const userInfo = new UserInfo({ profileName, profileJob  });
 const popupProfile = new PopupWithForm(popupEditProfile, function (values) {
-    userInfo.setUserInfo(values);
+    api.changeUserInfo(values.name, values.about)
     this.close();
 });
 popupProfile.setEventListiners();
