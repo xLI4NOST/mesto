@@ -34,19 +34,17 @@ import {
     avatarInput,
     avatar,
 } from "../src/utils/constants.js"
+import { data } from "autoprefixer";
 
 //API
 const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-54',
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-42',
     headers: {
-      authorization: '33d68f8a-3b24-4840-804d-6b0ee1010dc9',
+      authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6',
       'Content-Type': 'application/json'
     }
   }); 
 api.getInitialCards()
-// .then((result) => {
-//     console.log(result);
-//   }); 
 .then ((response)=>{
     const listItem = new Section({
         items: response,
@@ -62,10 +60,18 @@ api.getInitialCards()
 
     api.getUserData()
     .then( (response)=>{
-        console.log(response);
-        const userInfo = new UserInfo({ profileName, profileJob, avatar });
+        const userInfo = new UserInfo({ profileName, profileJob });
         userInfo.setUserInfo(response);
+        avatar.src = response.avatar
     })
+
+    api.changeUserInfo()
+    .then((response)=>{
+        response.name = textName.value
+        response.about = textSubtitle.value
+    })
+
+  
 
 
 
@@ -73,7 +79,7 @@ api.getInitialCards()
 
 //popupCard
 const popupCard = new PopupWithForm(popupCards, function (values) {
-    renderCard(values)
+    api.addNewCard(values.name, values.link)
     popupCard.close()
   })
 popupCard.setEventListiners()
@@ -81,7 +87,7 @@ popupCard.setEventListiners()
 const popupImg = new PopupWithImage(document.querySelector('.popup_type_image'));
 popupImg.setEventListiners();
 popupProfile
-const userInfo = new UserInfo({ profileName, profileJob });
+const userInfo = new UserInfo({ profileName, profileJob  });
 const popupProfile = new PopupWithForm(popupEditProfile, function (values) {
     userInfo.setUserInfo(values);
     this.close();
@@ -109,7 +115,7 @@ function createCard(data, template) {
 //Добавление карточки на страницу 
 function renderCard(values) {
     const readyCard = createCard(values, '.card-template')
-    listItem.addItem(readyCard)
+    container.prepend (readyCard)
 }
 
 //Открытие картинки 
