@@ -14,7 +14,7 @@ export default class FormValidator {
 
     //вызов ошибки
     _updateInputValidation(input) {
-        const errorSpan = document.querySelector(`#${input.id}-error`);
+        const errorSpan = this._form.querySelector(`#${input.id}-error`);
         errorSpan.textContent = input.validationMessage;
         if (!input.checkValidity) {
             input.classList.add(this._inputErrorClass);

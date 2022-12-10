@@ -2,6 +2,7 @@ import Card from "../src/components/Сard.js";
 import FormValidator from "../src/components/FormValidator.js";
 import Section from "../src/components/Section.js";
 import Popup from "../src/components/Popup.js";
+import PopupConfirm from "../src/components/PopupConfirm.js";
 import PopupWithImage from "../src/components/PopupWithImage.js";
 import PopupWithForm from "../src/components/PopupWithForm.js";
 import UserInfo from "../src/components/UserInfo.js";
@@ -46,12 +47,15 @@ const api = new Api({
     }
 });
 
+const popupConfirm = new PopupConfirm(document.querySelector('.popup_type_confirm'))
+popupConfirm.setEventListiners()
+
 api.getMyId()
 .then(id => {
     api.getInitialCards()
         .then((response) => {
             function createCard(data, template) {
-                const card = new Card(data, template, handleCardClick, data, id)
+                const card = new Card(data, template, handleCardClick, popupConfirm, id)
                 const item = card.generateCard()
                 return item
             }
@@ -70,10 +74,11 @@ api.getMyId()
 
 api.getUserData()
     .then((response) => {
-        const userInfo = new UserInfo({ profileName, profileJob });
+        const userInfo = new UserInfo({ profileName, profileJob, avatar });
         userInfo.setUserInfo(response);
-        avatar.src = response.avatar
+
     })
+
 
 //Объявление попапов
 
@@ -95,10 +100,18 @@ const popupProfile = new PopupWithForm(popupEditProfile, function (values) {
     this.close();
 });
 popupProfile.setEventListiners();
-popupAvatar//
-const popupAvatar = new PopupWithForm(document.querySelector('.popup_type_avatar'), avatarForm)
+const popupAvatar = new PopupWithForm(document.querySelector('.popup_type_avatar'), function (values){
+    //меняем аватар через API
+    api.changeUserAvatar(values.link)
+    .then((res)=>{
+        console.log(res);
+    })
+    popupAvatar.close()
+})
+
 popupAvatar.setEventListiners()
-///////
+
+
 
 
 //Открыть popupCards
@@ -112,12 +125,6 @@ function handleCardClick(title, image) {
     popupImg.open(title, image)
 }
 
-//Закрытие модального окна 
-ImageclosePopupButton.addEventListener('click', () => {
-    popupImg.close()
-});
-
-
 // Форма редактирования профиля
 buttonEditProfile.addEventListener('click', () => {
     popupProfile.open(userInfo.getUserInfo());
@@ -130,29 +137,19 @@ formProfile.enableValidation()
 //включение Валидации
 const formCards = new FormValidator(settings, formCardsElement)
 formCards.enableValidation(settings, formCardsElement)
-cardCloseButton.addEventListener('click', () => {
-    popupCard.close()
-})
+
 //включение Валидации
 const formAvatar = new FormValidator(settings, avatarForm)
 formAvatar.enableValidation(settings, avatarForm)
 
-//Закрытие popup редактирования профиля 
-closeButton.addEventListener('click', () => {
-    popupProfile.close()
-});
 // Открытие popupAvatar
 document.querySelector('.profile__avatar-edit-button').addEventListener('click', () => {
     popupAvatar.open()
 })
 
-document.querySelector('.form-avatar__close-icon').addEventListener('click', () => {
-    popupAvatar.close()
-})
-
-document.querySelector('.menu-avatar__button').addEventListener('click', (evt) => {
-    evt.preventDefault()
-    profileImg.src = avatarInput.value
-    popupAvatar.close()
-})
+// document.querySelector('.menu-avatar__button').addEventListener('click', (evt) => {
+//     evt.preventDefault()
+//     profileImg.src = avatarInput.value
+//     popupAvatar.close()
+// })
 

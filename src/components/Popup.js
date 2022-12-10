@@ -1,7 +1,7 @@
 export default class Popup {
     constructor (popupSelector){
         this._popupSelector = popupSelector
-        this._closeIcon = document.querySelector ('.menu__close-icon')
+        this._closeIcon = popupSelector.querySelector ('.close-icon')
     }
     open(){
         this._popupSelector.classList.remove('animation-close');
@@ -26,6 +26,9 @@ export default class Popup {
             if (evt.currentTarget === evt.target) {
                 this.close()
             }
+        })
+        this._closeIcon.addEventListener ('click', ()=>{
+            this.close()
         })
     }
 }
