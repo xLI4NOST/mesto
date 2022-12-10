@@ -1,12 +1,12 @@
-import { data } from "autoprefixer"
 
 export default class Card {
-    constructor(data, templateSelector, handleCardClick, isLiked) {
+    constructor(data, templateSelector, handleCardClick, cardOwnerId, myId) {
         this._cardTitle = data.name
         this._cardImage = data.link
         this._templateSelector = templateSelector
         this.handleCardClick = handleCardClick
-        this._isLiked = isLiked
+        this._cardOwnerId = cardOwnerId
+        this._myId = myId
     }
     _getTemplate() {
         const cardTemplate = document.querySelector(this._templateSelector)
@@ -42,16 +42,22 @@ export default class Card {
         .addEventListener('click', () => {
             this.handleCardClick(this._cardTitle, this._cardImage)
         })
-        this._buttonDelete
-        .addEventListener ('click', (event)=>{
-            this._handleDeleteCard(event)
-        })
+        // this._buttonDelete
+        // .addEventListener ('click', (event)=>{
+        //     this._handleDeleteCard(event)
+        // })
         this._buttonLike.addEventListener('click', (evt) => { 
             this._handleLikeCard(evt); 
        }); 
-        
+        this._getInfoLikes()
+        this._buttonDeleteOptions()
     }
-    getInfoLikes(){
-        this._likeInfo.textContent = this._isLiked.length
+    _getInfoLikes(){
+        this._likeInfo.textContent = this._cardOwnerId.likes.length
+    }
+    _buttonDeleteOptions(){
+        if(this._cardOwnerId.owner._id != this._myId) {
+            this._buttonDelete.remove()
+        }
     }
 }

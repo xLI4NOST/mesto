@@ -45,27 +45,28 @@ const api = new Api({
         'Content-Type': 'application/json'
     }
 });
-api.getInitialCards()
-    .then((response) => {
-        function createCard(data, template) {
-            const card = new Card(data, template, handleCardClick, data.likes)
-            const item = card.generateCard()
-            card.getInfoLikes()
-            return item
-            
-        }
 
-        const listItem = new Section({
-            items: response,
-            renderItems: (data) => {
-                const newCard = createCard(data, '.card-template')
-                listItem.addItem(newCard)
+api.getMyId()
+.then(id => {
+    api.getInitialCards()
+        .then((response) => {
+            function createCard(data, template) {
+                const card = new Card(data, template, handleCardClick, data, id)
+                const item = card.generateCard()
+                return item
             }
-        }, container)
 
-        listItem.renderItems()
-    })
+            const listItem = new Section({
+                items: response,
+                renderItems: (data) => {
+                    const newCard = createCard(data, '.card-template')
+                    listItem.addItem(newCard)
+                }
+            }, container)
 
+            listItem.renderItems()
+        })
+});
 
 api.getUserData()
     .then((response) => {
@@ -73,10 +74,6 @@ api.getUserData()
         userInfo.setUserInfo(response);
         avatar.src = response.avatar
     })
-
-// api.getLikeInfo()
-// .then ((response)=>{
-// })
 
 //Объявление попапов
 
@@ -109,19 +106,6 @@ document.querySelector('.profile__add-button')
     .addEventListener('click', () => {
         popupCard.open()
     })
-
-//Добавление новой карточки в DOM
-// function createCard(data, template) {
-//     const card = new Card(data, template, handleCardClick)
-//     const item = card.generateCard()
-//     return item
-// }
-
-// //Добавление карточки на страницу 
-// function renderCard(values) {
-//     const readyCard = createCard(values, '.card-template')
-//     container.prepend(readyCard)
-// }
 
 //Открытие картинки 
 function handleCardClick(title, image) {

@@ -16,8 +16,8 @@
         <section class="profile">
             <div class="profile__avatar-block">
                 <button type="button" class="profile__avatar-edit-button"></button>
-            <img class="profile__avatar" src="" alt="Кусто">
-        </div>
+                <img class="profile__avatar" src="" alt="Кусто">
+            </div>
             <article class="profile__info">
                 <div class="profile__heading">
                     <h1 class="profile__name">Имя</h1>
@@ -39,12 +39,13 @@
         <div class="menu">
             <button class="menu__close-icon" type="button"></button>
             <h2 class="menu__title">Редактировать профиль</h2>
-            <form class="form" novalidate name="formProfile" >
-                <input id = "user-name" type="text" name="name" required minlength="2" maxlength="40" placeholder="Имя" class="form__input form__input_type_name">
-                <span id= "user-name-error" class="error-span"></span>
-                <input id = "about" type="text" name="about" required minlength="2" maxlength="200" placeholder="Вид деятельности"
-                    class="form__input form__input_type_job">
-                    <span id= "about-error" class="error-span"></span>
+            <form class="form" novalidate name="formProfile">
+                <input id="user-name" type="text" name="name" required minlength="2" maxlength="40" placeholder="Имя"
+                    class="form__input form__input_type_name">
+                <span id="user-name-error" class="error-span"></span>
+                <input id="about" type="text" name="about" required minlength="2" maxlength="200"
+                    placeholder="Вид деятельности" class="form__input form__input_type_job">
+                <span id="about-error" class="error-span"></span>
                 <button disabled type="submit" class="menu__button menu__submit">
                     Сохранить
                 </button>
@@ -55,13 +56,15 @@
         <div class="menu-cards menu">
             <button class="menu__close-icon menu__card-close" type="button"></button>
             <h2 class="menu__title menu__title-cards">Новое место</h2>
-            <form class="form form-cards" name="formCards"  novalidate>
-                <input id = "cardName" type="text" name="name" placeholder="Название" minlength="2" maxlength="30" required novalidate class="form__input form-cards__input form-cards__input_type_text">
-                <span id= "cardName-error" class="error-span"></span>
-                <input id = "link" type="url" name="link" required novalidate minlength="2" placeholder="Ссылка на картинку"
-                    class="form__input form-cards__input form-cards__input_type_link">
-                    <span id= "link-error" class="error-span"></span>
-                <button disabled type="submit" class="menu__button menu-cards__buttonCreate menu__submit" value="Создать">
+            <form class="form form-cards" name="formCards" novalidate>
+                <input id="cardName" type="text" name="name" placeholder="Название" minlength="2" maxlength="30"
+                    required novalidate class="form__input form-cards__input form-cards__input_type_text">
+                <span id="cardName-error" class="error-span"></span>
+                <input id="link" type="url" name="link" required novalidate minlength="2"
+                    placeholder="Ссылка на картинку" class="form__input form-cards__input form-cards__input_type_link">
+                <span id="link-error" class="error-span"></span>
+                <button disabled type="submit" class="menu__button menu-cards__buttonCreate menu__submit"
+                    value="Создать">
                     Создать
                 </button>
             </form>
@@ -74,14 +77,14 @@
             <div class="card__description">
                 <h2 class="card__title"></h2>
                 <button class="card__button-like" type="button"></button>
-                <span id ="like-info" class="like-info"></span>
+                <span id="like-info" class="like-info"></span>
             </div>
         </div>
     </template>
 
     <div class="popup popup_type_image">
         <div class="image-container">
-            <button class="image-container__close-icon" id = "close-icon" type="button"></button>
+            <button class="image-container__close-icon" id="close-icon" type="button"></button>
             <img class="image-container__open-image" src="#" alt="none">
             <figcaption class="image-container__title"></figcaption>
         </div>
@@ -92,13 +95,20 @@
             <h2 class="menu__title-avatar">Обновить аватар</h2>
             <form class="form form-avatar">
                 <button class="menu__close-icon form-avatar__close-icon" type="button"></button>
-                <input id ="avarat-link" type="url" name="link" required novalidate minlength="2" placeholder="Ссылка на картинку" class="form__input form-avatar__input">
-                <span id= "avarat-link-error" class="error-span menu-avatar__error-span"></span>
+                <input id="avarat-link" type="url" name="link" required novalidate minlength="2"
+                    placeholder="Ссылка на картинку" class="form__input form-avatar__input">
+                <span id="avarat-link-error" class="error-span menu-avatar__error-span"></span>
                 <button disabled type="submit" class="menu-avatar__button menu__button menu__submit">Сохранить</button>
             </form>
         </div>
     </div>
-
+    <div class="popup popup_type_confirm">
+        <div class="menu menu-confirm">
+            <button class="menu__close-icon menu-confirm__close-icon" type="button"></button>
+            <h2 class="menu__title menu-confirm__title">Вы уверены?</h2>
+            <button class="menu-confirm__button menu__button">Да</button>
+        </div>
+    </div>
 </body>
 
 </html>
