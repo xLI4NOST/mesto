@@ -1,3 +1,4 @@
+import Api from "./Api"
 
 export default class Card {
     constructor(data, templateSelector, handleCardClick, popupConfirm, myId) {
@@ -31,8 +32,9 @@ export default class Card {
     }
 
     _handleDeleteCard (){
-        this._element.remove()
-        this._element = null
+        // this._element.remove()
+        // this._element = null
+        return this._data._id
     }
     _handleLikeCard (){
         this._buttonLike.classList.toggle('card__button-like_active'); 
@@ -47,6 +49,10 @@ export default class Card {
         this._buttonLike.addEventListener('click', (evt) => { 
             this._handleLikeCard(evt); 
        }); 
+       this._buttonDelete.addEventListener('click', ()=>{
+           this._popupConfirm.open(this._data._id);
+           this._popupConfirm.setEventListiners(this._data._id)
+       })
 
         this._getInfoLikes()
         this._buttonDeleteOptions()
@@ -58,10 +64,11 @@ export default class Card {
         if(this._data.owner._id != this._myId) {
             this._buttonDelete.remove()
             this._buttonDelete = null;
-        } else {
-            this._buttonDelete.addEventListener('click', (evt) => {
-                this._popupConfirm.open();
-            });
-        }
+        } 
+        // else {
+        //     this._buttonDelete.addEventListener('click', (evt) => {
+        //         this._popupConfirm.open();
+        //     });
+        // }
     }
 }

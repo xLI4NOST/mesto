@@ -36,6 +36,7 @@ import {
     avatar,
     likeScore,
 } from "../src/utils/constants.js"
+import { data } from "autoprefixer";
 
 
 //API
@@ -47,8 +48,7 @@ const api = new Api({
     }
 });
 
-const popupConfirm = new PopupConfirm(document.querySelector('.popup_type_confirm'))
-popupConfirm.setEventListiners()
+
 
 api.getMyId()
 .then(id => {
@@ -59,6 +59,7 @@ api.getMyId()
                 const item = card.generateCard()
                 return item
             }
+   
 
             const listItem = new Section({
                 items: response,
@@ -76,12 +77,16 @@ api.getUserData()
     .then((response) => {
         const userInfo = new UserInfo({ profileName, profileJob, avatar });
         userInfo.setUserInfo(response);
-
     })
 
 
-//Объявление попапов
 
+//Объявление попапов
+//popup confrim
+const popupConfirm = new PopupConfirm(document.querySelector('.popup_type_confirm'), (id)=>{
+api.deleteMyCard(id)
+})
+popupConfirm.setEventListiners()
 //popupCard
 const popupCard = new PopupWithForm(popupCards, function (values) {
     //Добавить карточку на сервер, через api
@@ -147,9 +152,4 @@ document.querySelector('.profile__avatar-edit-button').addEventListener('click',
     popupAvatar.open()
 })
 
-// document.querySelector('.menu-avatar__button').addEventListener('click', (evt) => {
-//     evt.preventDefault()
-//     profileImg.src = avatarInput.value
-//     popupAvatar.close()
-// })
 
