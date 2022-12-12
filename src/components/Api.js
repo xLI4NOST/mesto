@@ -4,7 +4,7 @@ export default class Api {
   constructor(options) {
     this.options = options
   }
-  getMyId(){
+  getMyId() {
     return fetch('https://nomoreparties.co/v1/cohort-54/users/me', {
       method: 'GET',
       headers: {
@@ -16,12 +16,12 @@ export default class Api {
         if (res.ok) {
           return res.json()
         } else {
-          return Promise.reject (`Ошибка: ${res.status} ${res.status.text}`)
+          return Promise.reject(`Ошибка: ${res.status} ${res.status.text}`)
         }
       })
-      .then ((response)=>{
+      .then((response) => {
         return response._id
-    })
+      })
   }
   getUserData() {
     return fetch('https://nomoreparties.co/v1/cohort-54/users/me', {
@@ -85,14 +85,14 @@ export default class Api {
       })
     }
     )
-    .then (res => {
-      if (res.ok){
-        return res.json()
-      }
-    })
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        }
+      })
   }
-  
-  getLikeInfo(){
+
+  getLikeInfo() {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-54/cards', {
       method: 'GET',
       headers: {
@@ -108,8 +108,8 @@ export default class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       });
   }
-deleteMyCard(id){
-  return fetch(`https://mesto.nomoreparties.co/v1/cohort-54/cards/${id}`, {
+  deleteMyCard(id) {
+    return fetch(`https://mesto.nomoreparties.co/v1/cohort-54/cards/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: '33d68f8a-3b24-4840-804d-6b0ee1010dc9'
@@ -123,10 +123,10 @@ deleteMyCard(id){
 
         return Promise.reject(`Ошибка: ${res.status}`);
       });
-}
+  }
 
-    setLikeCard(){
-    return fetch('https://mesto.nomoreparties.co/v1/cohort-54/cards/cardId/likes', {
+  setLikeCard(id) {
+    return fetch(`https://mesto.nomoreparties.co/v1/cohort-54/cards/${id}/likes`, {
       method: 'PUT',
       headers: {
         authorization: '33d68f8a-3b24-4840-804d-6b0ee1010dc9'
@@ -136,12 +136,10 @@ deleteMyCard(id){
         if (res.ok) {
           return res.json();
         }
-
-
         return Promise.reject(`Ошибка: ${res.status}`);
       });
   }
-  changeUserAvatar(link){
+  changeUserAvatar(link) {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-54/users/me/avatar', {
       method: 'PATCH',
       headers: {
@@ -149,7 +147,7 @@ deleteMyCard(id){
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        avatar:`${link}`
+        avatar: `${link}`
       })
     })
       .then(res => {

@@ -54,8 +54,9 @@ api.getMyId()
 .then(id => {
     api.getInitialCards()
         .then((response) => {
+            console.log(response);
             function createCard(data, template) {
-                const card = new Card(data, template, handleCardClick, popupConfirm, id)
+                const card = new Card(data, template, handleCardClick, like, popupConfirm, id)
                 const item = card.generateCard()
                 return item
             }
@@ -71,6 +72,9 @@ api.getMyId()
 
             listItem.renderItems()
         })
+        function like (id){
+            api.setLikeCard(id)
+            } 
 });
 
 api.getUserData()
@@ -78,6 +82,8 @@ api.getUserData()
         const userInfo = new UserInfo({ profileName, profileJob, avatar });
         userInfo.setUserInfo(response);
     })
+
+
 
 
 

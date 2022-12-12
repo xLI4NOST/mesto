@@ -1,7 +1,7 @@
 import Api from "./Api"
 
 export default class Card {
-    constructor(data, templateSelector, handleCardClick, popupConfirm, myId) {
+    constructor(data, templateSelector, handleCardClick, Like, popupConfirm, myId) {
         this._data = data 
         this._cardTitle = data.name
         this._cardImage = data.link
@@ -9,6 +9,7 @@ export default class Card {
         this.handleCardClick = handleCardClick
         this._popupConfirm = popupConfirm
         this._myId = myId
+        this._Like = Like
     }
     _getTemplate() {
         const cardTemplate = document.querySelector(this._templateSelector)
@@ -36,9 +37,10 @@ export default class Card {
         // this._element = null
         return this._data._id
     }
-    _handleLikeCard (){
-        this._buttonLike.classList.toggle('card__button-like_active'); 
-    }
+    // _handleLikeCard (){
+    //     this._buttonLike.classList.add('card__button-like_active'); 
+      
+    // }
  
     _setEventListiners() {
         this._img
@@ -46,22 +48,33 @@ export default class Card {
             this.handleCardClick(this._cardTitle, this._cardImage)
         })
 
-        this._buttonLike.addEventListener('click', (evt) => { 
-            this._handleLikeCard(evt); 
-       }); 
+    //     this._buttonLike.addEventListener('click', (evt) => { 
+    //         this._handleLikeCard(evt); 
+    //    }); 
        this._buttonDelete.addEventListener('click', ()=>{
-           this._popupConfirm.open(this._data._id);
+           this._popupConfirm.open();
            this._popupConfirm.setEventListiners(this._data._id)
        })
+       this._buttonLike.addEventListener ('click',()=>{
+
+        this._Like(this._data._id)
+    } )
 
         this._getInfoLikes()
         this._buttonDeleteOptions()
     }
     _getInfoLikes(){
         this._likeInfo.textContent = this._data.likes.length
+        console.log();
+        if (this._data.likes.includes(this._myId)=== true) {
+            this._buttonLike.classList.add('card__button-like_active'); 
+        } else{
+            this._buttonLike.classList.remove('card__button-like_active'); 
+        }
+     
     }
     _buttonDeleteOptions(){
-        if(this._data.owner._id != this._myId) {
+        if(this._data.owner._id != this._myId) {;
             this._buttonDelete.remove()
             this._buttonDelete = null;
         } 
