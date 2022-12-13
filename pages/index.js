@@ -104,16 +104,6 @@ const popupCard = new PopupWithForm(popupCards, function (values) {
     })
 })
 popupCard.setEventListiners()
-function createCard(data, template) {
-    const card = new Card(data, template, handleCardClick, like,deleteLike, popupConfirm, id)
-    const item = card.generateCard()
-    return item
-}
-function createCarde() {
-    const values = popupCard._getInputValues()
-    const readyCard = handleAddCard(values, '.card-template')
-    container.prepend(readyCard)
-}
 
 //popupImg
 const popupImg = new PopupWithImage(document.querySelector('.popup_type_image'));

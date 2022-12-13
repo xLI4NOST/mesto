@@ -34,9 +34,11 @@ export default class Card {
     }
 
     _handleDeleteCard() {
-        return this._data._id
+        this._element.remove()
+        this._element== null
     }
     _handleLikeCard() {
+        this._getInfoLikes()
         if (!this._data.likes.find(like => like._id == this._myId)) {
             this._buttonLike.classList.add('card__button-like_active');
             this._like(this._data._id)
