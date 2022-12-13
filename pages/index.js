@@ -68,7 +68,6 @@ api.getMyId()
                         listItem.addItem(newCard)
                     }
                 }, container)
-
                 listItem.renderItems()
             })
         function like(id) {
@@ -77,18 +76,17 @@ api.getMyId()
         function deleteLike (id){
             api.delteLikeCard(id)
         }
-
     });
 
-api.getUserData()
+    api.getUserData()
     .then((response) => {
         const userInfo = new UserInfo({ profileName, profileJob, avatar });
         userInfo.setUserInfo(response);
     })
 
 
-
 //Объявление попапов
+
 //popup confrim
 const popupConfirm = new PopupConfirm(document.querySelector('.popup_type_confirm'), (id) => {
     api.deleteMyCard(id)
@@ -99,19 +97,28 @@ const popupCard = new PopupWithForm(popupCards, function (values) {
     //Добавить карточку на сервер, через api
     popupCard.loading(true)
     api.addNewCard(values.name, values.link)
-    
     .then()
     .finally(()=>{
         popupCard.loading(false)
         popupCard.close()
     })
-    
 })
 popupCard.setEventListiners()
+function createCard(data, template) {
+    const card = new Card(data, template, handleCardClick, like,deleteLike, popupConfirm, id)
+    const item = card.generateCard()
+    return item
+}
+function createCarde() {
+    const values = popupCard._getInputValues()
+    const readyCard = handleAddCard(values, '.card-template')
+    container.prepend(readyCard)
+}
+
 //popupImg
 const popupImg = new PopupWithImage(document.querySelector('.popup_type_image'));
 popupImg.setEventListiners();
-popupProfile
+// popupProfile
 const userInfo = new UserInfo({ profileName, profileJob });
 const knopka = document.querySelector ('.menu__button')
 const popupProfile = new PopupWithForm(popupEditProfile, function (values) {
@@ -121,24 +128,18 @@ const popupProfile = new PopupWithForm(popupEditProfile, function (values) {
     .then ()
     .finally (()=>{
         popupProfile.loading(false)
+        api.getUserData()
+    .then((response) => {
+        const userInfo = new UserInfo({ profileName, profileJob, avatar });
+        userInfo.setUserInfo(response);
+    })
     },
     this.close()  
     )
-      
 });
-function renderResult (text){
-    result.textContent = text
-    error.textContent = ""
-  }
 
-function ux (button, load){
-    if(load){
-        button.textContent = button.textContent + ('...') 
-    } else {
 
-    }
 
-}
 popupProfile.setEventListiners();
 const popupAvatar = new PopupWithForm(document.querySelector('.popup_type_avatar'), function (values) {
     //меняем аватар через API
@@ -153,15 +154,6 @@ const popupAvatar = new PopupWithForm(document.querySelector('.popup_type_avatar
 })
 
 popupAvatar.setEventListiners()
-
-function renderLoading (isLoading){
-    if (isLoading) {
-        
-    } else {
-          spinner.classList.remove ('spinner_visible')
-          content.classList.remove ('content_hidden')
-    }
-  }
 
 //Открыть popupCards
 document.querySelector('.profile__add-button')
