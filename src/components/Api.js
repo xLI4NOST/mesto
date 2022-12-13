@@ -66,11 +66,7 @@ export default class Api {
         about: `${about}`
       })
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        }
-      });
+      
   }
   addNewCard(name, link) {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-54/cards', {
@@ -103,8 +99,6 @@ export default class Api {
         if (res.ok) {
           return res.json();
         }
-
-
         return Promise.reject(`Ошибка: ${res.status}`);
       });
   }
@@ -128,6 +122,21 @@ export default class Api {
   setLikeCard(id) {
     return fetch(`https://mesto.nomoreparties.co/v1/cohort-54/cards/${id}/likes`, {
       method: 'PUT',
+      headers: {
+        authorization: '33d68f8a-3b24-4840-804d-6b0ee1010dc9'
+      }
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  }
+
+  delteLikeCard(id) {
+    return fetch(`https://mesto.nomoreparties.co/v1/cohort-54/cards/${id}/likes`, {
+      method: 'DELETE',
       headers: {
         authorization: '33d68f8a-3b24-4840-804d-6b0ee1010dc9'
       }

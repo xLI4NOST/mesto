@@ -51,31 +51,34 @@ const api = new Api({
 
 
 api.getMyId()
-.then(id => {
-    api.getInitialCards()
-        .then((response) => {
-            console.log(response);
-            function createCard(data, template) {
-                const card = new Card(data, template, handleCardClick, like, popupConfirm, id)
-                const item = card.generateCard()
-                return item
-            }
-   
-
-            const listItem = new Section({
-                items: response,
-                renderItems: (data) => {
-                    const newCard = createCard(data, '.card-template')
-                    listItem.addItem(newCard)
+    .then(id => {
+        api.getInitialCards()
+            .then((response) => {
+                console.log(response);
+                function createCard(data, template) {
+                    const card = new Card(data, template, handleCardClick, like,deleteLike, popupConfirm, id)
+                    const item = card.generateCard()
+                    return item
                 }
-            }, container)
 
-            listItem.renderItems()
-        })
-        function like (id){
+                const listItem = new Section({
+                    items: response,
+                    renderItems: (data) => {
+                        const newCard = createCard(data, '.card-template')
+                        listItem.addItem(newCard)
+                    }
+                }, container)
+
+                listItem.renderItems()
+            })
+        function like(id) {
             api.setLikeCard(id)
-            } 
-});
+        }
+        function deleteLike (id){
+            api.delteLikeCard(id)
+        }
+
+    });
 
 api.getUserData()
     .then((response) => {
@@ -85,19 +88,24 @@ api.getUserData()
 
 
 
-
-
 //Объявление попапов
 //popup confrim
-const popupConfirm = new PopupConfirm(document.querySelector('.popup_type_confirm'), (id)=>{
-api.deleteMyCard(id)
+const popupConfirm = new PopupConfirm(document.querySelector('.popup_type_confirm'), (id) => {
+    api.deleteMyCard(id)
 })
 popupConfirm.setEventListiners()
 //popupCard
 const popupCard = new PopupWithForm(popupCards, function (values) {
     //Добавить карточку на сервер, через api
+    popupCard.loading(true)
     api.addNewCard(values.name, values.link)
-    popupCard.close()
+    
+    .then()
+    .finally(()=>{
+        popupCard.loading(false)
+        popupCard.close()
+    })
+    
 })
 popupCard.setEventListiners()
 //popupImg
@@ -105,25 +113,55 @@ const popupImg = new PopupWithImage(document.querySelector('.popup_type_image'))
 popupImg.setEventListiners();
 popupProfile
 const userInfo = new UserInfo({ profileName, profileJob });
+const knopka = document.querySelector ('.menu__button')
 const popupProfile = new PopupWithForm(popupEditProfile, function (values) {
     //Подставить данные профиля на сервер, через api
+    popupProfile.loading(true)
     api.changeUserInfo(values.name, values.about)
-    this.close();
+    .then ()
+    .finally (()=>{
+        popupProfile.loading(false)
+    },
+    this.close()  
+    )
+      
 });
+function renderResult (text){
+    result.textContent = text
+    error.textContent = ""
+  }
+
+function ux (button, load){
+    if(load){
+        button.textContent = button.textContent + ('...') 
+    } else {
+
+    }
+
+}
 popupProfile.setEventListiners();
-const popupAvatar = new PopupWithForm(document.querySelector('.popup_type_avatar'), function (values){
+const popupAvatar = new PopupWithForm(document.querySelector('.popup_type_avatar'), function (values) {
     //меняем аватар через API
+    popupAvatar.loading(true)
     api.changeUserAvatar(values.link)
-    .then((res)=>{
-        console.log(res);
-    })
-    popupAvatar.close()
+        .then()
+        .finally (()=>{
+            popupAvatar.loading(false)
+            popupAvatar.close()
+        })
+    
 })
 
 popupAvatar.setEventListiners()
 
-
-
+function renderLoading (isLoading){
+    if (isLoading) {
+        
+    } else {
+          spinner.classList.remove ('spinner_visible')
+          content.classList.remove ('content_hidden')
+    }
+  }
 
 //Открыть popupCards
 document.querySelector('.profile__add-button')
