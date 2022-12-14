@@ -50,40 +50,41 @@ const api = new Api({
 
 
 
-api.getMyId()
-    .then(id => {
-        api.getInitialCards()
-            .then((response) => {
-                console.log(response);
-                function createCard(data, template) {
-                    const card = new Card(data, template, handleCardClick, like,deleteLike, popupConfirm, id)
-                    const item = card.generateCard()
-                    return item
-                }
-
-                const listItem = new Section({
-                    items: response,
-                    renderItems: (data) => {
-                        const newCard = createCard(data, '.card-template')
-                        listItem.addItem(newCard)
-                    }
-                }, container)
-                listItem.renderItems()
-            })
-        function like(id) {
-            api.setLikeCard(id)
-        }
-        function deleteLike (id){
-            api.delteLikeCard(id)
-        }
-    });
-
     api.getUserData()
     .then((response) => {
         const userInfo = new UserInfo({ profileName, profileJob, avatar });
         userInfo.setUserInfo(response);
     })
 
+ 
+  
+
+    api.getInitialCards()
+    .then((response) => {
+        const listItem = new Section({
+            items: response,
+            renderItems: (data) => {
+                const newCard = createCard(data, '.card-template')
+                listItem.addItem(newCard)
+            }
+        }, container)
+        listItem.renderItems()
+    })
+
+    function like(id) {
+        api.setLikeCard(id)
+    }
+    function deleteLike (id){
+        api.delteLikeCard(id)
+    }
+//Получене ID
+
+    //Отрисуй карточку в реальном времени
+    function createCard(data, template) {
+        const card = new Card(data, template, handleCardClick, like ,deleteLike, popupConfirm)
+        const item = card.generateCard()
+        return item
+    }
 
 //Объявление попапов
 
@@ -97,8 +98,14 @@ const popupCard = new PopupWithForm(popupCards, function (values) {
     //Добавить карточку на сервер, через api
     popupCard.loading(true)
     api.addNewCard(values.name, values.link)
-    .then()
-    .finally(()=>{
+    
+    .then(
+        (res)=>{
+            const newCard= createCard (res, '.card-template')
+            container.prepend (newCard)
+        }
+    )
+    .finally((newCard)=>{
         popupCard.loading(false)
         popupCard.close()
     })

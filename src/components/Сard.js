@@ -1,14 +1,14 @@
 import Api from "./Api"
 
 export default class Card {
-    constructor(data, templateSelector, handleCardClick, like, deleteLike, popupConfirm, myId) {
+    constructor(data, templateSelector, handleCardClick, like, deleteLike, popupConfirm) {
         this._data = data
         this._cardTitle = data.name
         this._cardImage = data.link
         this._templateSelector = templateSelector
         this.handleCardClick = handleCardClick
         this._popupConfirm = popupConfirm
-        this._myId = myId
+        this._myId = 'fe9800b7fc4e5c8ba699da7b'
         this._like = like
         this._deleteLike = deleteLike
     }
@@ -38,7 +38,6 @@ export default class Card {
         this._element== null
     }
     _handleLikeCard() {
-        this._getInfoLikes()
         if (!this._data.likes.find(like => like._id == this._myId)) {
             this._buttonLike.classList.add('card__button-like_active');
             this._like(this._data._id)
@@ -60,12 +59,12 @@ export default class Card {
         this._buttonLike.addEventListener('click', () => {
             this._handleLikeCard()
         })
-
         this._getInfoLikes()
         this._buttonDeleteOptions()
     }
     _getInfoLikes() {
         this._likeInfo.textContent = this._data.likes.length
+        
         if (!this._data.likes.find(like => like._id = this._myId)) {
             this._buttonLike.classList.remove('card__button-like_active');
         } else {
