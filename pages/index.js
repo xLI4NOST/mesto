@@ -36,8 +36,8 @@ import {
     avatar,
     likeScore,
 } from "../src/utils/constants.js"
-import { data } from "autoprefixer";
 
+let globalSection = null;
 
 //API
 const api = new Api({
@@ -48,51 +48,68 @@ const api = new Api({
     }
 });
 
-
-// Promise.all([getUserData(), getInitialCards()])
-// // тут деструктурируете ответ от сервера, чтобы было понятнее, что пришло
-//   .then(([userData, cards]) => {
-//     console.log(cards)
-//       // и тут отрисовка карточек
-//   })
-//   .catch(err => {
-//     // тут ловим ошибку
-//   });
-
-
-api.getUserData()
-    .then((response) => {
-        userInfo.setUserInfo(response);
-        userInfo.serverInfo(response)
-    })
-
-api.getInitialCards()
-    .then((response) => {
-        const listItem = new Section({
-            items: response,
-            renderItems: (data) => {
+Promise.all([api.getUserData(), api.getInitialCards()])
+    .then(([userData, cards]) => {
+        console.log(cards);
+        //Данные профиля
+        userInfo.setUserInfo(userData);
+        userInfo.serverInfo(userData)
+        //Отрисовка карточек
+        globalSection = new Section({
+            items: cards,
+            renderItems: function (data) {
                 const newCard = createCard(data, '.card-template')
-                listItem.addItem(newCard)
+                globalSection.addItem(newCard)
             }
         }, container)
-        listItem.renderItems()
+        globalSection.renderItems()
     })
+    .catch(err => {
+        console.log(err);
+    });
 
-function like(likeButton, cardId) {
-    api.setLikeCard(cardId)
-        .then(() => {
-            likeButton.classList.add('card__button-like_active')
+
+// api.getUserData()
+//     .then((response) => {
+//         userInfo.setUserInfo(response);
+//         userInfo.serverInfo(response)
+//     })
+
+// api.getInitialCards()
+//     .then((response) => {
+//         const listItem = new Section({
+//             items: response,
+//             renderItems: (data) => {
+//                 const newCard = createCard(data, '.card-template')
+//                 listItem.addItem(newCard)
+//             }
+//         }, container)
+//         listItem.renderItems()
+//     })
+
+function like(card) {
+    api.setLikeCard(card._data._id)
+        .then((data) => {
+            card._data = data;
+            card._getInfoLikes();
         })
+        .catch(err => {
+            console.log(err);
+        });
 }
-function deleteLike(likeButton, cardId) {
-    api.delteLikeCard(cardId)
-        .then(() => {
-            likeButton.classList.remove('card__button-like_active')
+function deleteLike(card) {
+    api.delteLikeCard(card._data._id)
+        .then((data) => {
+            card._data = data;
+            card._getInfoLikes();
         })
+        .catch(err => {
+            console.log(err);
+        });
 }
 
 function handleDeleteCard(card) {
-    popupConfirm.getCurrentCard(card._data._id);
+    popupConfirm.setCurrentCard(card);
     popupConfirm.open();
 }
 
@@ -106,9 +123,16 @@ function createCard(data, template) {
 //Объявление попапов
 
 //popup confrim
-const popupConfirm = new PopupConfirm(document.querySelector('.popup_type_confirm'), (id) => {
-    api.deleteMyCard(id)
-        .then(popupConfirm.close())
+const popupConfirm = new PopupConfirm(document.querySelector('.popup_type_confirm'), (card) => {
+    api.deleteMyCard(card._data._id)
+        .then(() => {
+            card._setDeleteCard()
+            popupConfirm.close()
+        }
+        )
+        .catch(err => {
+            console.log(err);
+        });
 })
 popupConfirm.setEventListiners()
 //popupCard
@@ -119,10 +143,13 @@ const popupCard = new PopupWithForm(popupCards, function (values) {
         .then(
             (res) => {
                 const newCard = createCard(res, '.card-template')
-                container.prepend(newCard)
+                globalSection.addItem(newCard)
                 popupCard.close()
             }
         )
+        .catch(err => {
+            console.log(err);
+        })
         .finally(() => {
             popupCard.loading(false)
         })
@@ -143,6 +170,9 @@ const popupProfile = new PopupWithForm(popupEditProfile, function (values) {
                 const userInfo = new UserInfo({ profileName, profileJob, avatar });
                 userInfo.setUserInfo(response);
             }))
+        .catch(err => {
+            console.log(err);
+        })
         .finally(() => {
             popupProfile.loading(false)
         },
@@ -155,9 +185,12 @@ const popupAvatar = new PopupWithForm(document.querySelector('.popup_type_avatar
     //меняем аватар через API
     popupAvatar.loading(true)
     api.changeUserAvatar(values.link)
-        .then((res)=>{
+        .then((res) => {
             const userInfo = new UserInfo({ profileName, profileJob, avatar });
             userInfo.setUserInfo(res);
+        })
+        .catch(err => {
+            console.log(err);
         })
         .finally(() => {
             popupAvatar.loading(false)

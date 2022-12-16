@@ -19,7 +19,7 @@ export default class PopupConfirm extends Popup {
         })        
     }
 
-    getCurrentCard(card) {
+    setCurrentCard(card) {
         this._card = card;
       }
     close() {
