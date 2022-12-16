@@ -1,16 +1,16 @@
-import Api from "./Api"
+import { data } from "autoprefixer"
 
 export default class Card {
-    constructor(data, templateSelector, handleCardClick, like, deleteLike, popupConfirm) {
+    constructor(data, templateSelector, handleCardClick, like, deleteLike, deleteCard, myId) {
         this._data = data
         this._cardTitle = data.name
         this._cardImage = data.link
         this._templateSelector = templateSelector
         this.handleCardClick = handleCardClick
-        this._popupConfirm = popupConfirm
-        this._myId = 'fe9800b7fc4e5c8ba699da7b'
         this._like = like
         this._deleteLike = deleteLike
+        this._myId = myId
+        this._handleDeleteCard = deleteCard
     }
     _getTemplate() {
         const cardTemplate = document.querySelector(this._templateSelector)
@@ -39,10 +39,8 @@ export default class Card {
     }
     _handleLikeCard() {
         if (!this._data.likes.find(like => like._id == this._myId)) {
-            this._buttonLike.classList.add('card__button-like_active');
             this._like(this._data._id)
         } else {
-            this._buttonLike.classList.remove('card__button-like_active');
             this._deleteLike(this._data._id)
         }
     }
@@ -53,11 +51,14 @@ export default class Card {
                 this.handleCardClick(this._cardTitle, this._cardImage)
             })
         this._buttonDelete.addEventListener('click', () => {
-            this._popupConfirm.open();
-            this._popupConfirm.setEventListiners(this._data._id)
+            this._handleDeleteCard(this)
         })
         this._buttonLike.addEventListener('click', () => {
-            this._handleLikeCard()
+            if (!this._data.likes.find(like => like._id = this._myId)){
+                this._like (this._buttonLike, this._data._id)
+            } if (this._data.likes.find(like => like._id = this._myId)) {
+                this._deleteLike (this._buttonLike, this._data._id)
+            }
         })
         this._getInfoLikes()
         this._buttonDeleteOptions()

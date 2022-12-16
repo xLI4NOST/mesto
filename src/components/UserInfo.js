@@ -16,4 +16,11 @@ export default class UserInfo {
         this._profileJob.textContent = about;
         this._avatar.src = avatar
     }
+    serverInfo({name, about, avatar, cohort, _id}) {
+        this._name = name;
+        this._about = about;
+        this._avatar = avatar;
+        this._cohort = cohort;
+        this.id = _id;
+      }
 }

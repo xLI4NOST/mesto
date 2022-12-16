@@ -41,25 +41,32 @@ import { data } from "autoprefixer";
 
 //API
 const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-42',
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-54',
     headers: {
-        authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6',
+        authorization: '33d68f8a-3b24-4840-804d-6b0ee1010dc9',
         'Content-Type': 'application/json'
     }
 });
 
 
+// Promise.all([getUserData(), getInitialCards()])
+// // тут деструктурируете ответ от сервера, чтобы было понятнее, что пришло
+//   .then(([userData, cards]) => {
+//     console.log(cards)
+//       // и тут отрисовка карточек
+//   })
+//   .catch(err => {
+//     // тут ловим ошибку
+//   });
 
-    api.getUserData()
+
+api.getUserData()
     .then((response) => {
-        const userInfo = new UserInfo({ profileName, profileJob, avatar });
         userInfo.setUserInfo(response);
+        userInfo.serverInfo(response)
     })
 
- 
-  
-
-    api.getInitialCards()
+api.getInitialCards()
     .then((response) => {
         const listItem = new Section({
             items: response,
@@ -71,26 +78,37 @@ const api = new Api({
         listItem.renderItems()
     })
 
-    function like(id) {
-        api.setLikeCard(id)
-    }
-    function deleteLike (id){
-        api.delteLikeCard(id)
-    }
-//Получене ID
+function like(likeButton, cardId) {
+    api.setLikeCard(cardId)
+        .then(() => {
+            likeButton.classList.add('card__button-like_active')
+        })
+}
+function deleteLike(likeButton, cardId) {
+    api.delteLikeCard(cardId)
+        .then(() => {
+            likeButton.classList.remove('card__button-like_active')
+        })
+}
 
-    //Отрисуй карточку в реальном времени
-    function createCard(data, template) {
-        const card = new Card(data, template, handleCardClick, like ,deleteLike, popupConfirm)
-        const item = card.generateCard()
-        return item
-    }
+function handleDeleteCard(card) {
+    popupConfirm.getCurrentCard(card._data._id);
+    popupConfirm.open();
+}
+
+//Отрисуй карточку в реальном времени
+function createCard(data, template) {
+    const card = new Card(data, template, handleCardClick, like, deleteLike, handleDeleteCard, userInfo.id)
+    const item = card.generateCard()
+    return item
+}
 
 //Объявление попапов
 
 //popup confrim
 const popupConfirm = new PopupConfirm(document.querySelector('.popup_type_confirm'), (id) => {
     api.deleteMyCard(id)
+        .then(popupConfirm.close())
 })
 popupConfirm.setEventListiners()
 //popupCard
@@ -98,17 +116,16 @@ const popupCard = new PopupWithForm(popupCards, function (values) {
     //Добавить карточку на сервер, через api
     popupCard.loading(true)
     api.addNewCard(values.name, values.link)
-    
-    .then(
-        (res)=>{
-            const newCard= createCard (res, '.card-template')
-            container.prepend (newCard)
-        }
-    )
-    .finally((newCard)=>{
-        popupCard.loading(false)
-        popupCard.close()
-    })
+        .then(
+            (res) => {
+                const newCard = createCard(res, '.card-template')
+                container.prepend(newCard)
+                popupCard.close()
+            }
+        )
+        .finally(() => {
+            popupCard.loading(false)
+        })
 })
 popupCard.setEventListiners()
 
@@ -116,40 +133,37 @@ popupCard.setEventListiners()
 const popupImg = new PopupWithImage(document.querySelector('.popup_type_image'));
 popupImg.setEventListiners();
 // popupProfile
-const userInfo = new UserInfo({ profileName, profileJob });
-const knopka = document.querySelector ('.menu__button')
+const userInfo = new UserInfo({ profileName, profileJob, avatar });
 const popupProfile = new PopupWithForm(popupEditProfile, function (values) {
     //Подставить данные профиля на сервер, через api
     popupProfile.loading(true)
     api.changeUserInfo(values.name, values.about)
-    .then ()
-    .finally (()=>{
-        popupProfile.loading(false)
-        api.getUserData()
-    .then((response) => {
-        const userInfo = new UserInfo({ profileName, profileJob, avatar });
-        userInfo.setUserInfo(response);
-    })
-    },
-    this.close()  
-    )
+        .then(api.getUserData()
+            .then((response) => {
+                const userInfo = new UserInfo({ profileName, profileJob, avatar });
+                userInfo.setUserInfo(response);
+            }))
+        .finally(() => {
+            popupProfile.loading(false)
+        },
+            this.close()
+        )
 });
-
-
 
 popupProfile.setEventListiners();
 const popupAvatar = new PopupWithForm(document.querySelector('.popup_type_avatar'), function (values) {
     //меняем аватар через API
     popupAvatar.loading(true)
     api.changeUserAvatar(values.link)
-        .then()
-        .finally (()=>{
+        .then((res)=>{
+            const userInfo = new UserInfo({ profileName, profileJob, avatar });
+            userInfo.setUserInfo(res);
+        })
+        .finally(() => {
             popupAvatar.loading(false)
             popupAvatar.close()
         })
-    
 })
-
 popupAvatar.setEventListiners()
 
 //Открыть popupCards
