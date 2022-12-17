@@ -27,8 +27,8 @@
 .error-span{color:red;display:block;font-family:Inter;font-size:12px;font-style:normal;font-weight:400;left:33px;line-height:15px;position:absolute}@media screen and (max-width:879px){.error-span{color:red;display:block;font-family:Inter;font-size:12px;font-style:normal;font-weight:400;left:23px;line-height:15px;position:absolute}}
 .menu-avatar__error-span{left:35px;top:150px}
 .form__button_active{background:#000;border:0;color:#fff;cursor:pointer;opacity:1}
-.form-avatar__input{margin:0 0 36px 36px;width:358px}
-.menu-avatar__button{margin:0 0 36px 36px}
+.form-avatar__input{margin:0 0 36px 36px;width:358px}@media screen and (max-width:879px){.form-avatar__input{margin-left:24px}}
+.menu-avatar__button{margin:0 0 36px 36px}@media screen and (max-width:879px){.menu-avatar__button{margin-left:24px}}
 .menu-confirm__button{background:#000;border:0;color:#fff;cursor:pointer;margin-top:14px;opacity:1}
 .menu{background-color:#fff;border-radius:10px;box-shadow:0 0 25px rgba(0,0,0,.15);left:50%;position:fixed;top:20%;transform:translateX(-50%);z-index:3}@media screen and (max-width:879px){.menu{max-width:282px}}
 .menu-confirm{max-height:181px}
@@ -38,8 +38,8 @@
 
 .menu__close-icon{background-color:#000;background:transparent;background-image:url(2ceb783afbab75916ddc.svg);border:0;cursor:pointer;height:32px;left:99.9%;position:fixed;top:-40px;width:32px}.menu__close-icon:hover{opacity:.6}@media screen and (max-width:396px){.menu__close-icon{background-size:20px 20px;height:20px;left:95%;top:-30px;width:20px}}
 .popup_type_image__close-icon{background-repeat:no-repeat;border:0;cursor:pointer;height:32px;left:0;margin:-38px 0 0 5px;position:relative;top:0;width:37px}.popup_type_image__close-icon:hover{opacity:.6}@media screen and (max-width:396px){.popup_type_image__close-icon{background-size:20px 20px;height:20px;width:20px}}
-.menu__title-avatar{font-family:Inter;font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:34px 0 54px 36px}
-.menu-avatar{height:272px}
+.menu__title-avatar{font-family:Inter;font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:34px 0 54px 36px}@media screen and (max-width:879px){.menu__title-avatar{margin-left:24px}}
+.menu-avatar{height:272px}@media screen and (max-width:879px){.menu-avatar{height:272px;width:320px}}
 .header{border-bottom:1px solid #545454;margin:45px 0 0;max-height:74px;min-height:56px}@media screen and (max-width:879px){.header{margin:28px 0 0;max-height:54px}}
 .header__logo{margin:0 0 41px}@media screen and (max-width:879px){.header__logo{margin:0 28px 31px;max-width:103px}}
 .profile{display:flex;margin:40px 0 0}@media screen and (max-width:879px){.profile{flex-direction:column}}
