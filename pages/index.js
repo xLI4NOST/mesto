@@ -50,10 +50,9 @@ const api = new Api({
 
 Promise.all([api.getUserData(), api.getInitialCards()])
     .then(([userData, cards]) => {
-        console.log(cards);
         //Данные профиля
         userInfo.setUserInfo(userData);
-        userInfo.serverInfo(userData)
+        userInfo.getServerInfo(userData)
         //Отрисовка карточек
         globalSection = new Section({
             items: cards,
@@ -69,39 +68,21 @@ Promise.all([api.getUserData(), api.getInitialCards()])
     });
 
 
-// api.getUserData()
-//     .then((response) => {
-//         userInfo.setUserInfo(response);
-//         userInfo.serverInfo(response)
-//     })
-
-// api.getInitialCards()
-//     .then((response) => {
-//         const listItem = new Section({
-//             items: response,
-//             renderItems: (data) => {
-//                 const newCard = createCard(data, '.card-template')
-//                 listItem.addItem(newCard)
-//             }
-//         }, container)
-//         listItem.renderItems()
-//     })
-
 function like(card) {
-    api.setLikeCard(card._data._id)
+    api.setLikeCard(card.data._id)
         .then((data) => {
-            card._data = data;
-            card._getInfoLikes();
+            card.data = data;
+            card.getInfoLikes();
         })
         .catch(err => {
             console.log(err);
         });
 }
 function deleteLike(card) {
-    api.delteLikeCard(card._data._id)
+    api.delteLikeCard(card.data._id)
         .then((data) => {
-            card._data = data;
-            card._getInfoLikes();
+            card.data = data;
+            card.getInfoLikes();
         })
         .catch(err => {
             console.log(err);
@@ -124,9 +105,9 @@ function createCard(data, template) {
 
 //popup confrim
 const popupConfirm = new PopupConfirm(document.querySelector('.popup_type_confirm'), (card) => {
-    api.deleteMyCard(card._data._id)
+    api.deleteMyCard(card.data._id)
         .then(() => {
-            card._setDeleteCard()
+            card.setDeleteCard()
             popupConfirm.close()
         }
         )
@@ -155,7 +136,6 @@ const popupCard = new PopupWithForm(popupCards, function (values) {
         })
 })
 popupCard.setEventListiners()
-
 //popupImg
 const popupImg = new PopupWithImage(document.querySelector('.popup_type_image'));
 popupImg.setEventListiners();
@@ -165,18 +145,17 @@ const popupProfile = new PopupWithForm(popupEditProfile, function (values) {
     //Подставить данные профиля на сервер, через api
     popupProfile.loading(true)
     api.changeUserInfo(values.name, values.about)
-        .then(api.getUserData()
-            .then((response) => {
-                const userInfo = new UserInfo({ profileName, profileJob, avatar });
-                userInfo.setUserInfo(response);
-            }))
+        .then((res) => {
+            userInfo.setUserInfo(res)
+            popupProfile.close()
+        })
         .catch(err => {
             console.log(err);
         })
         .finally(() => {
             popupProfile.loading(false)
+
         },
-            this.close()
         )
 });
 
@@ -186,15 +165,14 @@ const popupAvatar = new PopupWithForm(document.querySelector('.popup_type_avatar
     popupAvatar.loading(true)
     api.changeUserAvatar(values.link)
         .then((res) => {
-            const userInfo = new UserInfo({ profileName, profileJob, avatar });
             userInfo.setUserInfo(res);
+            popupAvatar.close()
         })
         .catch(err => {
             console.log(err);
         })
         .finally(() => {
             popupAvatar.loading(false)
-            popupAvatar.close()
         })
 })
 popupAvatar.setEventListiners()

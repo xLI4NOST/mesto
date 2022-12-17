@@ -2,7 +2,7 @@ import { data } from "autoprefixer"
 
 export default class Card {
     constructor(data, templateSelector, handleCardClick, like, deleteLike, deleteCard, myId) {
-        this._data = data
+        this.data = data
         this._cardTitle = data.name
         this._cardImage = data.link
         this._templateSelector = templateSelector
@@ -34,7 +34,7 @@ export default class Card {
         return this._element
     }
 
-    _setDeleteCard() {
+    setDeleteCard() {
         this._element.remove()
         this._element == null
     }
@@ -58,16 +58,16 @@ export default class Card {
         this._likeButton.addEventListener('click', () => {
             this._handleLikeCard();
         })
-        this._getInfoLikes()
+        this.getInfoLikes()
         this._buttonDeleteOptions()
     }
 
     _isLikedByMe() {
-        return this._data.likes.find(like => like._id == this._myId) !== undefined;
+        return this.data.likes.find(like => like._id == this._myId) !== undefined;
     }
 
-    _getInfoLikes() {
-        this._likeInfo.textContent = this._data.likes.length
+    getInfoLikes() {
+        this._likeInfo.textContent = this.data.likes.length
         
         const isButtonLiked = this._likeButton.classList.contains('card__button-like_active');
         if(isButtonLiked !== this._isLikedByMe()) {
@@ -80,7 +80,7 @@ export default class Card {
     
     }
     _buttonDeleteOptions() {
-        if (this._data.owner._id != this._myId) {
+        if (this.data.owner._id != this._myId) {
             this._buttonDelete.remove()
             this._buttonDelete = null;
         }
